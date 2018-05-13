@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteRule ^error400/?$ /error400.php [NC,L]
+RewriteRule ^error401/?$ /error401.php [NC,L]
+RewriteRule ^error403/?$ /error403.php [NC,L]
+RewriteRule ^error404/?$ /error404.php [NC,L]
+RewriteRule ^error408/?$ /error408.php [NC,L]
+RewriteRule ^error500/?$ /error500.php [NC,L]
+
+RewriteRule ^login/?$ /login.php [NC,L]
+
+</IfModule>
