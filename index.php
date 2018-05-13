@@ -56,7 +56,7 @@ else{
 
     <br>
 
-      <a href="/logoutc"><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation">Não sou eu</button></a>
+      <a href="/logoutc"><span class="uk-button uk-button-primary">Não sou eu</span></a>
 
 
 </form>

@@ -2,5 +2,5 @@
 setcookie("iduser" , "");
 setcookie("inisession" , "");
 setcookie("thecry" , "");
-header("location: /saiu");
+header("location: /?saiu");
 ?>
