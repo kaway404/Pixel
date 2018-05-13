@@ -38,37 +38,63 @@ if(isset($_GET['register'])){
     <div class="uk-margin uk-animation-slide-bottom-medium uk-animation">
         <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: user"></span>
-            <input class="uk-input" id="emaill" type="text" placeholder="E-mail">
+            <input class="uk-input" id="emailr" type="text" placeholder="E-mail">
         </div>
     </div>
 
     <div class="uk-margin uk-animation-slide-bottom-medium uk-animation">
         <div class="uk-inline">
             <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-            <input class="uk-input" id="senhal" placeholder="Senha" type="password">
+            <input class="uk-input" id="senhar" placeholder="Senha" type="password">
         </div>
     </div>
 
       <div class="uk-margin uk-animation-slide-bottom-medium uk-animation">
         <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: user"></span>
-            <input class="uk-input" id="senhal" placeholder="Nome" type="text">
+            <input class="uk-input" id="nomer" placeholder="Nome" type="text">
         </div>
     </div>
 
        <div class="uk-margin uk-animation-slide-bottom-medium uk-animation">
         <div class="uk-inline">
             <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: user"></span>
-            <input class="uk-input" id="senhal" placeholder="Sobrenome" type="text">
+            <input class="uk-input" id="sobrer" placeholder="Sobrenome" type="text">
+        </div>
+    </div>
+
+     <div class="uk-margin uk-animation-slide-bottom-medium uk-animation">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input class="uk-input" id="pincode" placeholder="Pincode" type="text">
         </div>
     </div>
     <br>
     <br>
-    <button id="logar" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation">Registrar</button>
+    <button id="registrar" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation">Registrar</button>
 
 </form>
 
 <div id="resposta" class="uk-animation-slide-bottom-medium uk-animation"></div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("#registrar").click(function() {
+        var emailr = $("#emailr").val(); 
+        var senhar = $("#senhar").val();
+        var nomer = $("#nomer").val(); 
+        var sobrenomer = $("#sobrer").val();
+        var pincode = $("#pincode").val();
+        $.post("/register", {emailr: emailr,senhar: senhar,nomer: nomer,sobrenomer: sobrenomer,pincode: pincode},
+        function(data){
+         $("#resposta").html(data);
+         }
+         , "html"); 
+         return false;
+    });
+});
+
+</script>
 
 <h1 class="ui uk-animation-slide-bottom-medium uk-animation" style="bottom: 20px; position: relative;">Ou entre</h1>
 <a href="/"><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom">Entrar</button></a>

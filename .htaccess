@@ -9,6 +9,7 @@ RewriteRule ^error408/?$ /error408.php [NC,L]
 RewriteRule ^error500/?$ /error500.php [NC,L]
 
 RewriteRule ^login/?$ /login.php [NC,L]
+RewriteRule ^register/?$ /registro.php [NC,L]
 RewriteRule ^logout/?$ /sair.php [NC,L]
 
 </IfModule>
