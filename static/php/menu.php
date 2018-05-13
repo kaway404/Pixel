@@ -22,16 +22,48 @@
                 <li><a>Nova função</a><span>sistema de logout</span></li>
             </div>
 
-
             <div class="news uk-animation-slide-top-medium" id="nt">
                 <p>Desenhos populares</p>
+                <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider>
+
+    <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m">
                 <li>
                     <img src="/img/img.jpg">
                     <div id="bottom-news">
                         <span uk-icon="heart" style="color: #555; float: right"></span>
                          <span uk-icon="more" style="color: #555; float: right"></span> 
                     </div>
-                </li>
+                 </li>
+
+                 <li>
+                    <img src="/img/img.jpg">
+                    <div id="bottom-news">
+                        <span uk-icon="heart" style="color: #555; float: right"></span>
+                         <span uk-icon="more" style="color: #555; float: right"></span> 
+                    </div>
+                 </li>
+
+                 <li>
+                    <img src="/img/img.jpg">
+                    <div id="bottom-news">
+                        <span uk-icon="heart" style="color: #555; float: right"></span>
+                         <span uk-icon="more" style="color: #555; float: right"></span> 
+                    </div>
+                 </li>
+
+                 <li>
+                    <img src="/img/img.jpg">
+                    <div id="bottom-news">
+                        <span uk-icon="heart" style="color: #555; float: right"></span>
+                         <span uk-icon="more" style="color: #555; float: right"></span> 
+                    </div>
+                 </li>
+    </ul>
+
+    <a class="what uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+    <a class="what uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+</div>
             </div>
 
             <div class="news uk-animation-slide-top-medium" id="nt">
@@ -55,8 +87,8 @@
             <?php endforeach;?>
         </ul>
 
-    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+    <a class="what uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+    <a class="what uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
 
 </div>
                

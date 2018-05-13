@@ -283,3 +283,9 @@ body{
 	padding: 0;
 	width: auto;
 }
+
+.news .what{
+	background: rgba(0,0,0,.50);
+	width: auto;
+	padding: 5px;
+}
