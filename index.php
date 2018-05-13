@@ -231,6 +231,57 @@ $(document).ready(function() {
 
 <?php } else{ ?>
 
+<?php
+    if(isset($_COOKIE['iduser'])){
+    if(isset($_GET['verificarsessao'])){
+?>
+
+<div class="background-fixed">
+    <div class="uk-flex uk-flex-center">
+    <div class="login uk-animation-slide-bottom-medium uk-animation">
+
+        <h1 id="logo">Pixel</h1>
+
+        <hr>
+
+        <h1 class="ui uk-animation-slide-bottom-medium uk-animation">Insira seu PIN-CODE</h1>
+
+        <form>
+
+    <div class="uk-margin uk-animation-slide-bottom-medium uk-animation">
+        <div class="uk-inline">
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+            <input class="uk-input" id="pincode" placeholder="Pin-code" type="password">
+        </div>
+    </div>
+    <br>
+    <br>
+    <button id="verificar" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation">Verificar</button>
+
+</form>
+
+<div id="resposta" class="uk-animation-slide-bottom-medium uk-animation"></div>
+
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#verificar").click(function() {
+        var pincode = $("#pincode").val(); 
+        $.post("/verificar", {pincode: pincode},
+        function(data){
+         $("#resposta").html(data);
+         }
+         , "html");
+         return false;
+    });
+});
+</script>
+
+<?php } }  else{ ?>
+
 <div class="background-fixed">
 	<div class="uk-flex uk-flex-center">
 	<div class="login uk-animation-slide-bottom-medium uk-animation">
@@ -287,7 +338,7 @@ $(document).ready(function() {
 </script>
 
 
-<?php }  } }?>
+<?php }  } } }?>
 
 </body>
 </html>

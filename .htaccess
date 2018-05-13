@@ -13,5 +13,6 @@ RewriteRule ^register/?$ /registro.php [NC,L]
 RewriteRule ^logout/?$ /sair.php [NC,L]
 RewriteRule ^again/?$ /again.php [NC,L]
 RewriteRule ^logoutc/?$ /saida.php [NC,L]
+RewriteRule ^verificar/?$ /verificando.php [NC,L]
 
 </IfModule>
