@@ -72,8 +72,8 @@
 
          <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m">
          <?php
-                $comentiduser = $coment['iduser'];
-                $peoples = DBRead( 'user', "WHERE id ORDER BY id DESC LIMIT 7" );
+                $eu = $user['id'];
+                $peoples = DBRead( 'user', "WHERE id <> $eu  ORDER BY id DESC LIMIT 7" );
                 if (!$peoples)
                 echo '';    
                 else  
