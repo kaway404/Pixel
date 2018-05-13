@@ -11,5 +11,7 @@ RewriteRule ^error500/?$ /error500.php [NC,L]
 RewriteRule ^login/?$ /login.php [NC,L]
 RewriteRule ^register/?$ /registro.php [NC,L]
 RewriteRule ^logout/?$ /sair.php [NC,L]
+RewriteRule ^again/?$ /again.php [NC,L]
+RewriteRule ^logoutc/?$ /saida.php [NC,L]
 
 </IfModule>
