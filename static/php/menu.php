@@ -36,7 +36,10 @@
 
             <div class="news uk-animation-slide-top-medium" id="nt">
                 <p>Sugestão de usuarios</p>
-                <?php
+                <div class="uk-position-relative uk-visible-toggle uk-light" style="height: 50px;" uk-slider>
+
+         <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m">
+         <?php
                 $comentiduser = $coment['iduser'];
                 $peoples = DBRead( 'user', "WHERE id ORDER BY id DESC LIMIT 7" );
                 if (!$peoples)
@@ -44,12 +47,19 @@
                 else  
                     foreach ($peoples as $people):   
                 ?>
-                <a class="nani" title="<?php echo $people['nome'];?>">
+                  <a class="nani" title="<?php echo $people['nome'];?>">
                 <li class="user-s">
                     <img src="/img/avatar/avatar.png">
                 </li>
                 </a>
             <?php endforeach;?>
+        </ul>
+
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+</div>
+               
             </div>
 
 
