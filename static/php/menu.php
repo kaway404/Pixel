@@ -44,9 +44,11 @@
                 else  
                     foreach ($peoples as $people):   
                 ?>
-                <li class="user-s" title="<?php echo $people['name'];?>">
+                <a class="nani" title="<?php echo $people['nome'];?>">
+                <li class="user-s">
                     <img src="/img/avatar/avatar.png">
                 </li>
+                </a>
             <?php endforeach;?>
             </div>
 
