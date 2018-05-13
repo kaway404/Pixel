@@ -32,42 +32,24 @@
                          <span uk-icon="more" style="color: #555; float: right"></span> 
                     </div>
                 </li>
-                 <li>
-                    <img src="/img/img.jpg">
-                    <div id="bottom-news">
-                        <span uk-icon="heart" style="color: #555; float: right"></span>
-                         <span uk-icon="more" style="color: #555; float: right"></span> 
-                    </div>
-                </li>
-                <li>
-                    <img src="/img/img.jpg">
-                    <div id="bottom-news">
-                        <span uk-icon="heart" style="color: #555; float: right"></span>
-                         <span uk-icon="more" style="color: #555; float: right"></span> 
-                    </div>
-                </li>
-                <li>
-                    <img src="/img/img.jpg">
-                    <div id="bottom-news">
-                        <span uk-icon="heart" style="color: #555; float: right"></span>
-                         <span uk-icon="more" style="color: #555; float: right"></span> 
-                    </div>
-                </li>
-                <li>
-                    <img src="/img/img.jpg">
-                    <div id="bottom-news">
-                        <span uk-icon="heart" style="color: #555; float: right"></span>
-                         <span uk-icon="more" style="color: #555; float: right"></span> 
-                    </div>
-                </li>
-                <li>
-                    <img src="/img/img.jpg">
-                    <div id="bottom-news">
-                        <span uk-icon="heart" style="color: #555; float: right"></span>
-                         <span uk-icon="more" style="color: #555; float: right"></span> 
-                    </div>
-                </li>
             </div>
+
+            <div class="news uk-animation-slide-top-medium" id="nt">
+                <p>Sugestão de usuarios</p>
+                <?php
+                $comentiduser = $coment['iduser'];
+                $peoples = DBRead( 'user', "WHERE id ORDER BY id DESC LIMIT 7" );
+                if (!$peoples)
+                echo '';    
+                else  
+                    foreach ($peoples as $people):   
+                ?>
+                <li class="user-s" title="<?php echo $people['name'];?>">
+                    <img src="/img/avatar/avatar.png">
+                </li>
+            <?php endforeach;?>
+            </div>
+
 
         </div>
     </div>
