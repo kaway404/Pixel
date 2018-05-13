@@ -285,7 +285,8 @@ body{
 }
 
 .news .what{
-	background: rgba(0,0,0,.50);
+	background: #0097dc;
 	width: auto;
 	padding: 5px;
+	color: #fff;
 }
