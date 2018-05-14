@@ -256,7 +256,7 @@ $(document).ready(function() {
     </div>
     <br>
     <br>
-    <button id="verificar" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation">Verificar</button>
+    <button id="verificar" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation" style="position: relative; bottom: -10px;">Verificar</button>
 
 </form>
 
