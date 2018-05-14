@@ -5,7 +5,7 @@
             <a href="/profile.php?id=<?php echo $user['id'];?>"><li><img src="/img/avatar/avatar.png" class="wtf">
             <span><?php echo $user['nome'];?></span>
             </li></a>
-            <li><a href="#" id="get">Seja premium</a></li>
+            <li><a href="#sejapremium" id="get" uk-toggle>Seja premium</a></li>
             <li><a href="#" id="linksn">Seguindo</a></li>
             <li><a href="#" id="linksn">Seguidores</a></li>
             <hr>
@@ -13,6 +13,17 @@
             <li><a href="#" id="linksn">Eventos</a></li>
         </div>
     </div>
+
+<div id="sejapremium" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Seja Premium</h2>
+        <p>Premium tem varias vantagens, umas delas é fixar seus projetos para todo mundo ver.</p>
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Sair</button>
+            <button class="uk-button uk-button-primary" type="button">Pagar</button>
+        </p>
+    </div>
+</div>
 
     <div class="uk-flex uk-flex-center">
         <div class="feed uk-animation-slide-top-medium">
