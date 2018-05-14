@@ -14,13 +14,6 @@
         </div>
     </div>
 
-     <div class="uk-flex uk-flex-right">
-        <div class="status-p uk-animation-slide-top-medium">
-            <li><a href="#" id="linksn">Seguindo</a></li>
-            <li><a href="#" id="linksn">Seguidores</a></li>
-        </div>
-    </div>
-
 <div id="sejapremium" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
         <h2 class="uk-modal-title">Premium</h2>
