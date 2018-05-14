@@ -279,11 +279,11 @@ $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
 $comentiduser = $desenho['id'];
 $likes = DBRead( 'like', "WHERE idpost = $comentiduser and iduser = $iduser ORDER BY id DESC" );
 if (!$likes)
-echo '<a id="like'.$desenho['id'].'"><span id="nani'.$desenho['id'].'" uk-tooltip="Curtir" uk-icon="heart"></span></a>';
+echo '<a id="like'.$desenho['id'].'"><span id="nani'.$desenho['id'].'" uk-icon="heart"></span></a>';
 else  
   foreach ($likes as $like):
 ?>
-<a id="like<?php echo $desenho['id']; ?>"><span uk-tooltip="Curtir" id="nani<?php echo $desenho['id']; ?>" class="ativo-like" uk-icon="heart"></span></a>
+<a id="like<?php echo $desenho['id']; ?>"><span id="nani<?php echo $desenho['id']; ?>" class="ativo-like" uk-icon="heart"></span></a>
 <?php endforeach; ?>
                          <span uk-tooltip="Ver mais" uk-icon="more"></span> 
         </div>
