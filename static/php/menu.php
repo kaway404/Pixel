@@ -242,7 +242,7 @@ if (isset($_POST['save'])) {
 <article class="uk-comment">
     <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
         <div class="uk-width-auto">
-            <img class="uk-comment-avatar" src="
+            <img uk-tooltip="<?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?>" class="uk-comment-avatar" src="
             /img/avatar/avatar.png" style="border-radius: 50%; left: 10px; position: relative; top: 10px;" width="50" height="50" alt="">
         </div>
         <div class="uk-width-expand">
