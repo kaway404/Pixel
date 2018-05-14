@@ -140,7 +140,7 @@ if(isset($_GET['register'])){
     <center>
 <a href="/?entrar" style="position: relative;bottom: 30px;" class="uk-animation-slide-bottom-medium uk-animation">Já tenho uma conta</a>
 </center>
-    <button id="registrar" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation">Registrar</button>
+    <button id="registrar" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation" style="position: relative; bottom: -10px;">Registrar</button>
 
 </form>
 
@@ -201,7 +201,7 @@ if(isset($_GET['register'])){
     </div>
     <br>
     <br>
-    <button id="logar" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation">Logar</button>
+    <button id="logar" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation" style="position: relative; bottom: -10px;">Entrar</button>
 
 </form>
 
@@ -314,7 +314,7 @@ $(document).ready(function() {
 <a href="/?register=1" style="position: relative;bottom: 30px;" class="uk-animation-slide-bottom-medium uk-animation">Não tenho uma conta</a>
 </center>
 
-    <button id="logar" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation">Logar</button>
+    <button id="logar" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation" style="position: relative; bottom: -10px;">Entrar</button>
 
 </form>
 
