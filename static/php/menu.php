@@ -116,7 +116,7 @@
                     foreach ($eudesenheis as $eudesenhei):   
                 ?>
     <div id="photoho">
-        <a class="uk-inline" href="/img/desenhos/<?php echo $desenho['photo'];?>" data-caption="<?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?>">
+        <a class="uk-inline" href="/img/desenhos/<?php echo $desenho['photo'];?>" data-caption="Feito por <?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?>">
             <img src="/img/desenhos/<?php echo $desenho['photo'];?>" alt="">
         </a>
     </div>
