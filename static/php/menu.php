@@ -6,18 +6,17 @@
             <span><?php echo $user['nome'];?></span>
             </li></a>
             <li><a href="#sejapremium" id="get" uk-toggle uk-tooltip="Ao ser Premium você tem vantangens!">Seja premium</a></li>
-            <li><a href="#" id="linksn">Seguindo</a></li>
+            <li><a href="#" id="linksn">Configurações</a></li>
             <li><a href="#" id="linksn">Seguidores</a></li>
             <hr>
-            <li><a href="#" id="linksn">Grupos</a></li>
-            <li><a href="#" id="linksn">Eventos</a></li>
+            <li><a href="#" id="linksn">Meu perfil</a></li>
         </div>
     </div>
 
      <div class="uk-flex uk-flex-right">
         <div class="status-p uk-animation-slide-top-medium">
-            <li><a href="#" id="linksn">Configurações</a></li>
-            <li><a href="#" id="linksn">Meu perfil</a></li>
+            <li><a href="#" id="linksn">Seguindo</a></li>
+            <li><a href="#" id="linksn">Seguidores</a></li>
         </div>
     </div>
 
@@ -172,7 +171,8 @@ if (isset($_POST['save'])) {
 
 
             </div>
-  <?php
+                            <!-- 
+                <?php
                 $desenhos = DBRead( 'desenhos', "WHERE id and destaque = 1 ORDER BY id DESC LIMIT 1" );
                 if (!$desenhos)
                 echo '';    
