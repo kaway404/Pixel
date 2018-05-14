@@ -442,3 +442,12 @@ body{
 #bottom-post span:hover{
 	color: #1e87f0;
 }
+
+#bottom-post .ativo-like{
+	color: #1e87f0;
+}
+ .totallike{
+	padding: 5px;
+	position: relative;
+	left: 10px;
+}

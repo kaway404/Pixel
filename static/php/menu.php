@@ -234,7 +234,6 @@ if (isset($_POST['save'])) {
 
     <?php endforeach; ?>
              -->
-
  <?php
                 $desenhos = DBRead( 'desenhos', "WHERE id ORDER BY id DESC LIMIT 7" );
                 if (!$desenhos)
@@ -250,6 +249,13 @@ if (isset($_POST['save'])) {
                 else  
                     foreach ($eudesenheis as $eudesenhei):   
                 ?>
+                 <?php
+  $conexao = mysql_pconnect($hostp,$userp,$passwrdp) or die (mysql_error());
+  $banco = mysql_select_db($dbp);
+  $comentiduser = $desenho['id'];
+  $totalcurtida = mysql_query("SELECT * FROM pixel_like WHERE idpost = $comentiduser ");
+  $totalcurtida = mysql_num_rows($totalcurtida);
+                                                     ?>
 <div class="newst">
 <article class="uk-comment">
     <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
@@ -266,13 +272,41 @@ if (isset($_POST['save'])) {
         <p style="padding: 5px;"><?php echo $desenho['sobre'];?>
             <img src="img/desenhos/<?php echo $desenho['photo'];?>" style="width: 100%; max-height: 300px;"/>
         </p>
+          <p class="totallike" id="totallike<?php echo $desenho['id']; ?>"><?php echo $totalcurtida;?> curtiram isso</p>
          <div id="bottom-post">
-                        <span uk-tooltip="Curtir" uk-icon="heart"></span>
+                        <?php
+$iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
+$comentiduser = $desenho['id'];
+$likes = DBRead( 'like', "WHERE idpost = $comentiduser and iduser = $iduser ORDER BY id DESC" );
+if (!$likes)
+echo '<a id="like'.$desenho['id'].'"><span id="nani'.$desenho['id'].'" uk-tooltip="Curtir" uk-icon="heart"></span></a>';
+else  
+  foreach ($likes as $like):
+?>
+<a id="like<?php echo $desenho['id']; ?>"><span uk-tooltip="Curtir" id="nani<?php echo $desenho['id']; ?>" class="ativo-like" uk-icon="heart"></span></a>
+<?php endforeach; ?>
                          <span uk-tooltip="Ver mais" uk-icon="more"></span> 
         </div>
     </div>
 </article>
 </div>
+
+<div id="respostaba"></div>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+    $("#like<?php echo $desenho['id']; ?>").click(function() {
+        var post = <?php echo $desenho['id'] ?>; 
+        $.post("/static/php/react.php", {post: post},
+        function(data){
+         $("#respostaba").html(data);
+         }
+         , "html");
+         return false;
+    });
+});
+</script>
+
 <?php endforeach; endforeach ; ?>
 
 
