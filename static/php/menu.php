@@ -3,7 +3,15 @@
     <div class="uk-flex uk-flex-left">
         <div class="status-p uk-animation-slide-top-medium">
             <a href="/profile.php?id=<?php echo $user['id'];?>"><li><img src="/img/avatar/avatar.png" class="wtf">
-            <span><?php echo $user['nome'];?> <?php echo $user['sobrenome'];?></span>
+            <span>  <?php
+            $nome = $user['nome'] . " " .  $user['sobrenome'];
+  $str2 = nl2br( $nome );
+  $len2 = strlen( $str2 );
+  $max2 = 20;
+   if( $len2 <= $max2 )
+   echo $str2;
+  else    
+   echo substr( $str2, 0, $max2 ) . '...'?></span>
             </li></a>
             <li><a href="#sejapremium" id="get" uk-toggle uk-tooltip="Ao ser Premium você tem vantangens!">Seja premium</a></li>
             <hr>
