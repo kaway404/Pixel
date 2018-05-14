@@ -78,23 +78,32 @@ if (isset($_POST['save'])) {
             echo "<script language='javascript' type='text/javascript'>alert('Tens de escolher uma foto...');</script>";
         }else{
             $n = rand (0, 10000000);
-            $img = preg_replace('/[^\w\._]+/', '', $_FILES["file"]["name"]);
+            $img2 = preg_replace('/[^\w\._]+/', '', $_FILES["file"]["name"]);
+            $img = sha1($img2) . ".png";
 
-            move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
 
             $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
                 $form['destaque'] = 0;
                 $form['iduser'] = $user['id'];
                 $form['photo'] = $img;
                 $form['sobre'] = $_POST['about'];
-                if ( ereg("image", $img) ){
-                if( DBCreate( 'desenhos', $form ) ){
+                $tipos=array(
+                    'image/gif',
+                    'image/jpeg',
+                    'image/png',
+                );
+
+
+if (in_array($_FILES["file"]["type"], $tipos)){
+    move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
+if( DBCreate( 'desenhos', $form ) ){
                     header("Location: /");
-        }
-        }
-        else{
-             echo "<script language='javascript' type='text/javascript'>alert('Não é uma imagem...');</script>";
-        }
+                }
+}
+else{
+    echo "<script language='javascript' type='text/javascript'>alert('Não é uma imagem...');</script>";
+}
+            
     }
 }
 ?>
@@ -102,6 +111,7 @@ if (isset($_POST['save'])) {
 
     <div class="uk-flex uk-flex-center">
         <div class="feed uk-animation-slide-top-medium">
+
    <!--          <div class="news">
                 <p>Info</p>
                 <li><a>Nova função</a><span>sistema de logout</span></li>
@@ -153,7 +163,10 @@ if (isset($_POST['save'])) {
 </div>
             </div>
         <?php endforeach;?> -->
-
+        <div class="uk-alert-primary uk-animation-slide-top-medium" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p>Seja bem vindo(a) ao mundo dos artistas.</p>
+    </div>
              <div class="news uk-animation-slide-top-medium" id="nt">
                 <p>Sugestão de usuarios</p>
                 <div class="uk-position-relative uk-visible-toggle uk-light" style="height: 50px;" uk-slider>
