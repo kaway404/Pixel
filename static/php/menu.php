@@ -14,6 +14,13 @@
         </div>
     </div>
 
+     <div class="uk-flex uk-flex-right">
+        <div class="status-p uk-animation-slide-top-medium">
+            <li><a href="#" id="linksn">Configurações</a></li>
+            <li><a href="#" id="linksn">Meu perfil</a></li>
+        </div>
+    </div>
+
 <div id="sejapremium" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
         <h2 class="uk-modal-title">Premium</h2>
@@ -119,7 +126,7 @@
                     foreach ($desenhos as $desenho):   
                 ?>
                 <?php
-                $eu = $user['id'];
+                $eu = $desenho['iduser'];
                 $eudesenheis = DBRead( 'user', "WHERE id = $eu ORDER BY id DESC LIMIT 1" );
                 if (!$eudesenheis)
                 echo '';    
@@ -147,13 +154,32 @@
 
 
 
-<!-- sadasdadasdsadas -->
+<!-- Vídeos -->
+
+<div class="news slider">
+<p>Vídeos de desenhistas</p>
+<div class="uk-position-relative uk-visible-toggle uk-light" style="height: 90px;" uk-slider>
+<div class="uk-child-width-1-3@m" uk-grid uk-lightbox="animation: slide">
+    <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m">
+
+<li>
+<div uk-lightbox>
+    <a class="videosteste uk-button uk-button-default" href="//www.youtube.com/watch?v=vmPvjZKBNYY" data-caption="YouTube"><img src="/img/desenhos/<?php echo $desenho['photo'];?>" alt=""></a>
+</div>
+</li>
+
+        </ul>
+
+   
+</div>
+
+ <a class="what uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+ <a class="what uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
 
 
+</div>
 
-<!-- dasdas
- -->
-
+<!-- End videos -->
 
 
         </div>

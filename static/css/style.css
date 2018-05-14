@@ -117,6 +117,7 @@ body{
     border-radius: 5px;
     border: 1px solid #d6dee5;
     padding-bottom: 20px;
+    position: fixed;
 }
 
 .wtf{
@@ -197,7 +198,7 @@ body{
 	width: 600px;
 	height: auto;
 	position: relative;
-	bottom: 342px;
+	bottom: 20px;
 }
 
 .news{
@@ -308,4 +309,8 @@ body{
 
 .slider #photoho{
 	width: 160px;
+}
+
+.videosteste{
+	width: 150px !important;
 }
