@@ -266,6 +266,10 @@ if (isset($_POST['save'])) {
         <p style="padding: 5px;"><?php echo $desenho['sobre'];?>
             <img src="img/desenhos/<?php echo $desenho['photo'];?>" style="width: 100%; max-height: 300px;"/>
         </p>
+         <div id="bottom-post">
+                        <span uk-tooltip="Curtir" uk-icon="heart"></span>
+                         <span uk-tooltip="Ver mais" uk-icon="more"></span> 
+        </div>
     </div>
 </article>
 </div>

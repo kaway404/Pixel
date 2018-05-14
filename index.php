@@ -22,6 +22,8 @@ if(isset($_COOKIE['iduser']) and (isset($_COOKIE['inisession'])) and (isset($_CO
 else{
 ?>
 
+
+
 <?php
     if((isset($_COOKIE['thecry']))){
     $idcry = DBEscape( strip_tags(trim($_COOKIE['thecry']) ) );
