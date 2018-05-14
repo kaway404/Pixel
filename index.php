@@ -137,6 +137,9 @@ if(isset($_GET['register'])){
     </div>
     <br>
     <br>
+    <center>
+<a href="/?entrar" style="position: relative;bottom: 30px;" class="uk-animation-slide-bottom-medium uk-animation">Já tenho uma conta</a>
+</center>
     <button id="registrar" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation">Registrar</button>
 
 </form>
@@ -162,8 +165,6 @@ if(isset($_GET['register'])){
 
 </script>
 
-<h1 class="ui uk-animation-slide-bottom-medium uk-animation" style="bottom: 20px; position: relative;">Entre</h1>
-<a href="/"><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" style="position: relative; bottom: -10px;">Entrar</button></a>
 
     </div>
 </div>
@@ -308,15 +309,16 @@ $(document).ready(function() {
     </div>
     <br>
     <br>
+
+<center>
+<a href="/?register=1" style="position: relative;bottom: 30px;" class="uk-animation-slide-bottom-medium uk-animation">Não tenho uma conta</a>
+</center>
+
     <button id="logar" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation">Logar</button>
 
 </form>
 
 <div id="resposta" class="uk-animation-slide-bottom-medium uk-animation"></div>
-
-<h1 class="ui uk-animation-slide-bottom-medium uk-animation" style="bottom: 20px; position: relative;">Não tenho uma conta</h1>
-<a href="/?register=1"><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" style="position: relative; bottom: -10px;">Cadastrar</button></a>
-
 	</div>
 </div>
 </div>
