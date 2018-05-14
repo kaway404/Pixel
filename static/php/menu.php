@@ -3,7 +3,7 @@
     <div class="uk-flex uk-flex-left">
         <div class="status-p uk-animation-slide-top-medium">
             <a href="/profile.php?id=<?php echo $user['id'];?>"><li><img src="/img/avatar/avatar.png" class="wtf">
-            <span><?php echo $user['nome'];?></span>
+            <span><?php echo $user['nome'];?> <?php echo $user['sobrenome'];?></span>
             </li></a>
             <li><a href="#sejapremium" id="get" uk-toggle uk-tooltip="Ao ser Premium você tem vantangens!">Seja premium</a></li>
             <hr>
