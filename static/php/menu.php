@@ -16,7 +16,7 @@
 
 <div id="sejapremium" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
-        <h2 class="uk-modal-title">Seja Premium</h2>
+        <h2 class="uk-modal-title">Premium</h2>
         <p>Premium tem varias vantagens, umas delas é fixar seus projetos para todo mundo ver.</p>
         <p class="uk-text-right">
             <button class="uk-button uk-button-default uk-modal-close" type="button">Sair</button>
