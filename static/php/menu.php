@@ -47,6 +47,70 @@
     </div>
     </div>
 
+
+<progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+
+<script>
+
+    var bar = document.getElementById('js-progressbar');
+
+    UIkit.upload('.js-upload', {
+
+        url: '',
+        multiple: true,
+
+        beforeSend: function () {
+            console.log('beforeSend', arguments);
+        },
+        beforeAll: function () {
+            console.log('beforeAll', arguments);
+        },
+        load: function () {
+            console.log('load', arguments);
+        },
+        error: function () {
+            console.log('error', arguments);
+        },
+        complete: function () {
+            console.log('complete', arguments);
+        },
+
+        loadStart: function (e) {
+            console.log('loadStart', arguments);
+
+            bar.removeAttribute('hidden');
+            bar.max = e.total;
+            bar.value = e.loaded;
+        },
+
+        progress: function (e) {
+            console.log('progress', arguments);
+
+            bar.max = e.total;
+            bar.value = e.loaded;
+        },
+
+        loadEnd: function (e) {
+            console.log('loadEnd', arguments);
+
+            bar.max = e.total;
+            bar.value = e.loaded;
+        },
+
+        completeAll: function () {
+            console.log('completeAll', arguments);
+
+            setTimeout(function () {
+                bar.setAttribute('hidden', 'hidden');
+            }, 1000);
+
+            alert('Upload completo');
+        }
+
+    });
+
+</script>
+
             <textarea class="uk-input" id="senha" placeholder="Sobre o projeto" type="text" style="resize: none; height: 150px;"></textarea>
             </div>
             <br>
@@ -94,6 +158,15 @@ if (isset($_POST['save'])) {
                 <li><a>Nova função</a><span>sistema de logout</span></li>
             </div>
 
+            <?php
+                $desenhos = DBRead( 'desenhos', "WHERE id ORDER BY id DESC LIMIT 1" );
+                if (!$desenhos)
+                echo '';    
+                else  
+                    foreach ($desenhos as $desenho):   
+                ?>
+
+
             <div class="news uk-animation-slide-top-medium" id="nt">
                 <p>Desenhos publicado recentemente</p>
                 <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider>
@@ -129,6 +202,7 @@ if (isset($_POST['save'])) {
 
 </div>
             </div>
+        <?php endforeach;?>
 
             <div class="news uk-animation-slide-top-medium" id="nt">
                 <p>Sugestão de usuarios</p>
@@ -158,7 +232,13 @@ if (isset($_POST['save'])) {
 
 
             </div>
-
+  <?php
+                $desenhos = DBRead( 'desenhos', "WHERE id and destaque = 1 ORDER BY id DESC LIMIT 1" );
+                if (!$desenhos)
+                echo '';    
+                else  
+                    foreach ($desenhos as $desenho):   
+                ?>
 <div class="news slider">
 <p>Desenhos da equipe</p>
 <div class="uk-position-relative uk-visible-toggle uk-light" style="height: 90px;" uk-slider>
@@ -200,6 +280,8 @@ if (isset($_POST['save'])) {
 
 
         </div>
+
+    <?php endforeach; ?>
 
 
 
