@@ -6,6 +6,7 @@
             <span><?php echo $user['nome'];?></span>
             </li></a>
             <li><a href="#sejapremium" id="get" uk-toggle uk-tooltip="Ao ser Premium você tem vantangens!">Seja premium</a></li>
+            <hr>
             <li><a href="#" id="linksn">Meu perfil</a></li>
             <li><a href="#" id="linksn">Seguindo</a></li>
             <li><a href="#" id="linksn">Seguidores</a></li>

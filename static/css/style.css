@@ -65,7 +65,7 @@ body{
 }
 
 .header-align{
-	width: 1020px;
+	width: 1220px;
 	position: relative;	
 }
 
@@ -107,7 +107,7 @@ body{
 }
 
 .main{
-	width: 1020px;
+	width: 1220px;
 	height: auto;
 	top: 180px;
 	position: relative;
@@ -115,7 +115,7 @@ body{
 
 .status-p{
 	background-color: #fff;
-    width: 174px;
+    width: 274px;
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #d6dee5;
@@ -125,8 +125,8 @@ body{
 
 .wtf{
 	border-radius: 50%;
-	width: 40px;
-	height: 40px;
+	width: 50px;
+	height: 50px;
 	margin-right: 3px;
 	left: 5px;
 	position: relative;
@@ -149,8 +149,11 @@ body{
     text-overflow: ellipsis;
     overflow: hidden;
     color: #333;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: bold;
+    left: 10px;
+    position: relative;
+    top: 5px;
 }
 
 #get{
@@ -198,7 +201,7 @@ body{
 }
 
 .feed{
-	width: 600px;
+	width: 590px;
 	height: auto;
 	position: relative;
 	bottom: 20px;
