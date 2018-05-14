@@ -79,7 +79,9 @@ if (isset($_POST['save'])) {
         }else{
             $n = rand (0, 10000000);
             $img2 = preg_replace('/[^\w\._]+/', '', $_FILES["file"]["name"]);
-            $img = sha1($img2) . ".png";
+            $imgsha = sha1($img2) . ".png";
+            $img = "pixel_photo." . $imgsha;
+
 
 
             $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
