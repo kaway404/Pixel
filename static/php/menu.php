@@ -32,6 +32,59 @@
     </div>
 </div>
 
+<div id="publish" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Publique seu projeto</h2>
+        <p class="uk-text-right">
+    <div class="uk-inline" style="width: 100%;">
+    <form method="POST" enctype="multipart/form-data">
+    <div class="js-upload uk-placeholder uk-text-center">
+    <span uk-icon="icon: cloud-upload"></span>
+    <span class="uk-text-middle">Faça upload do seu desenho/design</span>
+    <div uk-form-custom>
+        <input type="file" name="file" multiple>
+        <span class="uk-link">Selecione um</span>
+    </div>
+</div>
+
+<progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+            <textarea class="uk-input" id="senha" placeholder="Sobre o projeto" type="text" style="resize: none; height: 150px;"></textarea>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div style="float: right;">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Fechar</button>
+            <input class="uk-button uk-button-default uk-button-primary" type="submit" id="btn2" value="Publicar" name="save" />
+            </form>
+            </div>
+        </p>
+    </div>
+</div>
+
+<?php
+if (isset($_POST['save'])) {
+        if ($_FILES["file"]["error"]>0) {
+            echo "<script language='javascript' type='text/javascript'>alert('Tens de escolher uma foto...');</script>";
+        }else{
+            $n = rand (0, 10000000);
+            $img = preg_replace('/[^\w\._]+/', '', $_FILES["file"]["name"]);
+
+            move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
+            echo '';
+
+            $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
+                $form['destaque'] = 0;
+                $form['iduser'] = $user['id'];
+                $form['photo'] = $img;
+                if( DBCreate( 'desenhos', $form ) ){
+                    header("Location: /");
+        }
+    }
+}
+?>
+
+
     <div class="uk-flex uk-flex-center">
         <div class="feed uk-animation-slide-top-medium">
             <div class="news">
@@ -41,17 +94,33 @@
             </div>
 
             <div class="news uk-animation-slide-top-medium" id="nt">
-                <p>Desenhos populares</p>
+                <p>Desenhos publicado recentemente</p>
                 <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider>
 
     <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m">
-                <li>
-                    <img src="/img/img.jpg">
+                <?php
+                $desenhos = DBRead( 'desenhos', "WHERE id and destaque = 1 ORDER BY id DESC LIMIT 7" );
+                if (!$desenhos)
+                echo '';    
+                else  
+                    foreach ($desenhos as $desenho):   
+                ?>
+                <?php
+                $eu = $desenho['iduser'];
+                $eudesenheis = DBRead( 'user', "WHERE id = $eu ORDER BY id DESC LIMIT 1" );
+                if (!$eudesenheis)
+                echo '';    
+                else  
+                    foreach ($eudesenheis as $eudesenhei):   
+                ?>
+                <li uk-tooltip="Feito por <?php echo $eudesenhei['nome']; ?> <?php echo $eudesenhei['sobrenome']; ?> ">
+                    <img src="/img/desenhos/<?php echo $desenho['photo'];?>">
                     <div id="bottom-news">
                         <span uk-tooltip="Curtir" uk-icon="heart" style="color: #555; float: right"></span>
                          <span uk-tooltip="Ver mais" uk-icon="more" style="color: #555; float: right"></span> 
                     </div>
                  </li>
+             <?php endforeach; endforeach;?>
     </ul>
 
     <a class="what uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>

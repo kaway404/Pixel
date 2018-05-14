@@ -52,11 +52,13 @@ else{
 
     <br>
     <br>
-    <button id="again" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation">Login</button>
+<center>
+<a href="/logoutc" style="position: relative;bottom: 30px;" class="uk-animation-slide-bottom-medium uk-animation">Sair</a>
+</center>
+
+    <button id="again" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom uk-animation-slide-bottom-medium uk-animation" style="position: relative; bottom: -10px;">Login</button>
 
     <br>
-
-      <a href="/logoutc"><span class="uk-button uk-button-primary">Não sou eu</span></a>
 
 
 </form>
