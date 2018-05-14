@@ -322,3 +322,11 @@ body{
 .slider #photoho{
 	width: 160px;
 }
+
+#sejapremium{
+	z-index: 5000;
+}
+
+#publish{
+	z-index: 5000;
+}
