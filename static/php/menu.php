@@ -92,7 +92,7 @@ if (isset($_POST['save'])) {
 
     <div class="uk-flex uk-flex-center">
         <div class="feed uk-animation-slide-top-medium">
-            <div class="news">
+   <!--          <div class="news">
                 <p>Info</p>
                 <li><a>Nova função</a><span>sistema de logout</span></li>
                 <li><a>Nova função</a><span>sistema de logout</span></li>
@@ -142,7 +142,7 @@ if (isset($_POST['save'])) {
 
 </div>
             </div>
-        <?php endforeach;?>
+        <?php endforeach;?> -->
 
             <div class="news uk-animation-slide-top-medium" id="nt">
                 <p>Sugestão de usuarios</p>
@@ -222,9 +222,10 @@ if (isset($_POST['save'])) {
 
 
         </div>
-         -->
+
 
     <?php endforeach; ?>
+             -->
 
  <?php
                 $desenhos = DBRead( 'desenhos', "WHERE id ORDER BY id DESC LIMIT 7" );
