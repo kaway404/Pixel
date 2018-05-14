@@ -61,7 +61,7 @@ body{
 	height: 115px;
 	background-color: #fff;
     border-bottom: 1px solid #d6dee5;
-    z-index: 1000;
+    z-index: 2000;
 }
 
 .header-align{
@@ -80,6 +80,7 @@ body{
 	background: #fff;
 	position: fixed;
 	border-bottom: 1px solid #d6dee5;
+	z-index: 1000;
 }
 
 .tabs a{
