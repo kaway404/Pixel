@@ -5,7 +5,7 @@
             <a href="/profile.php?id=<?php echo $user['id'];?>"><li><img src="/img/avatar/avatar.png" class="wtf">
             <span><?php echo $user['nome'];?></span>
             </li></a>
-            <li><a href="#sejapremium" id="get" uk-toggle>Seja premium</a></li>
+            <li><a href="#sejapremium" id="get" uk-toggle uk-tooltip="Ao ser Premium você tem vantangens!">Seja premium</a></li>
             <li><a href="#" id="linksn">Seguindo</a></li>
             <li><a href="#" id="linksn">Seguidores</a></li>
             <hr>
@@ -24,7 +24,7 @@
 <div id="sejapremium" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
         <h2 class="uk-modal-title">Premium</h2>
-        <p>Premium tem varias vantagens, umas delas é fixar seus projetos para todo mundo ver.</p>
+        <p>Ao ser premium você tem a suas imagens para todos verem.</p>
         <p class="uk-text-right">
             <button class="uk-button uk-button-default uk-modal-close" type="button">Fechar</button>
             <button class="uk-button uk-button-primary" type="button">Compre</button>
@@ -48,32 +48,8 @@
                 <li>
                     <img src="/img/img.jpg">
                     <div id="bottom-news">
-                        <span uk-icon="heart" style="color: #555; float: right"></span>
-                         <span uk-icon="more" style="color: #555; float: right"></span> 
-                    </div>
-                 </li>
-
-                 <li>
-                    <img src="/img/img.jpg">
-                    <div id="bottom-news">
-                        <span uk-icon="heart" style="color: #555; float: right"></span>
-                         <span uk-icon="more" style="color: #555; float: right"></span> 
-                    </div>
-                 </li>
-
-                 <li>
-                    <img src="/img/img.jpg">
-                    <div id="bottom-news">
-                        <span uk-icon="heart" style="color: #555; float: right"></span>
-                         <span uk-icon="more" style="color: #555; float: right"></span> 
-                    </div>
-                 </li>
-
-                 <li>
-                    <img src="/img/img.jpg">
-                    <div id="bottom-news">
-                        <span uk-icon="heart" style="color: #555; float: right"></span>
-                         <span uk-icon="more" style="color: #555; float: right"></span> 
+                        <span uk-tooltip="Curtir" uk-icon="heart" style="color: #555; float: right"></span>
+                         <span uk-tooltip="Ver mais" uk-icon="more" style="color: #555; float: right"></span> 
                     </div>
                  </li>
     </ul>
@@ -97,7 +73,7 @@
                 else  
                     foreach ($peoples as $people):   
                 ?>
-                  <a class="nani" title="<?php echo $people['nome'];?>">
+                  <a class="nani" title="<?php echo $people['nome'];?>" uk-tooltip="<?php echo $people['nome'];?> <?php echo $people['sobrenome'];?>">
                 <li class="user-s">
                     <img src="/img/avatar/avatar.png">
                 </li>
@@ -151,35 +127,6 @@
 
 </div>
 
-
-
-
-<!-- Vídeos -->
-
-<div class="news slider">
-<p>Vídeos de desenhistas</p>
-<div class="uk-position-relative uk-visible-toggle uk-light" style="height: 90px;" uk-slider>
-<div class="uk-child-width-1-3@m" uk-grid uk-lightbox="animation: slide">
-    <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m">
-
-<li>
-<div uk-lightbox>
-    <a class="videosteste uk-button uk-button-default" href="//www.youtube.com/watch?v=vmPvjZKBNYY" data-caption="YouTube"><img src="/img/desenhos/<?php echo $desenho['photo'];?>" alt=""></a>
-</div>
-</li>
-
-        </ul>
-
-   
-</div>
-
- <a class="what uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
- <a class="what uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
-
-
-</div>
-
-<!-- End videos -->
 
 
         </div>
