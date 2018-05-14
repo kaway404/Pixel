@@ -41,77 +41,16 @@
     <span uk-icon="icon: cloud-upload"></span>
     <span class="uk-text-middle">Faça upload do seu desenho/design</span>
         <form method="POST" enctype="multipart/form-data">
-    <div uk-form-custom>
+    <div class="js-upload" uk-form-custom>
         <input type="file" name="file" multiple>
-        <span class="uk-link">Selecione um</span>
+        <span class="uk-link" tabindex="-1">Selecione um</span>
+        <br>
+        <span>Obs: Selecione o arquivo e clique em publicar.</span>
     </div>
     </div>
 
 
-<progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
-
-<script>
-
-    var bar = document.getElementById('js-progressbar');
-
-    UIkit.upload('.js-upload', {
-
-        url: '',
-        multiple: true,
-
-        beforeSend: function () {
-            console.log('beforeSend', arguments);
-        },
-        beforeAll: function () {
-            console.log('beforeAll', arguments);
-        },
-        load: function () {
-            console.log('load', arguments);
-        },
-        error: function () {
-            console.log('error', arguments);
-        },
-        complete: function () {
-            console.log('complete', arguments);
-        },
-
-        loadStart: function (e) {
-            console.log('loadStart', arguments);
-
-            bar.removeAttribute('hidden');
-            bar.max = e.total;
-            bar.value = e.loaded;
-        },
-
-        progress: function (e) {
-            console.log('progress', arguments);
-
-            bar.max = e.total;
-            bar.value = e.loaded;
-        },
-
-        loadEnd: function (e) {
-            console.log('loadEnd', arguments);
-
-            bar.max = e.total;
-            bar.value = e.loaded;
-        },
-
-        completeAll: function () {
-            console.log('completeAll', arguments);
-
-            setTimeout(function () {
-                bar.setAttribute('hidden', 'hidden');
-            }, 1000);
-
-            alert('Upload completo');
-        }
-
-    });
-
-</script>
-
-            <textarea class="uk-input" id="senha" placeholder="Sobre o projeto" type="text" style="resize: none; height: 150px;"></textarea>
+            <textarea name="about" class="uk-input" id="senha" placeholder="Sobre o projeto" type="text" style="resize: none; height: 150px;"></textarea>
             </div>
             <br>
             <br>
@@ -139,6 +78,7 @@ if (isset($_POST['save'])) {
                 $form['destaque'] = 0;
                 $form['iduser'] = $user['id'];
                 $form['photo'] = $img;
+                $form['sobre'] = $_POST['about'];
                 if( DBCreate( 'desenhos', $form ) ){
                     header("Location: /");
         }
@@ -187,7 +127,7 @@ if (isset($_POST['save'])) {
                 else  
                     foreach ($eudesenheis as $eudesenhei):   
                 ?>
-                <li uk-tooltip="Feito por <?php echo $eudesenhei['nome']; ?> <?php echo $eudesenhei['sobrenome']; ?> ">
+                <li uk-tooltip="Feito por <?php echo $eudesenhei['nome']; ?> <?php echo $eudesenhei['sobrenome']; ?> <br> <?php echo $desenho['sobre']; ?>  ">
                     <img src="/img/desenhos/<?php echo $desenho['photo'];?>">
                     <div id="bottom-news">
                         <span uk-tooltip="Curtir" uk-icon="heart" style="color: #555; float: right"></span>
