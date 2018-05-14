@@ -1,0 +1,173 @@
+<?php
+require '/static/php/system/database.php';
+require '/static/php/system/config.php';
+if(isset($_COOKIE['iduser']) and (isset($_COOKIE['inisession'])) and (isset($_COOKIE['thecry']))){
+    $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
+    $thecry = DBEscape( strip_tags( trim( $_COOKIE['thecry'] ) ) );
+    $user   = DBRead( 'user', "WHERE id = '{$iduser}' and thecry  = '{$thecry}'  LIMIT 1" );
+    if (!$user){
+    setcookie("iduser" , "");
+    setcookie("inisession" , "");
+    setcookie("thecry" , "");
+    header("location: /?errorlogin");
+    }
+    else{
+    $user = $user[0];
+    $idcry = DBEscape( strip_tags(trim($_COOKIE['thecry']) ) );
+    $usercry = DBRead('user', "WHERE thecry = '{$idcry}' LIMIT 1 ");
+    $usercry = $usercry[0];
+    require 'static/php/header.php';
+?>
+
+<?php
+$idpeople = DBEscape( strip_tags(trim($_GET['id']) ) );
+$people = DBRead('user', "WHERE id = '{$idpeople}' LIMIT 1 ");
+$people = $people[0];
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pixel | <?php echo $people['nome'];?> <?php echo $people['sobrenome'];?></title>
+    <link rel="stylesheet" href="/static/css/uikit.min.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <script src="/static/js/uikit.min.js"></script>
+    <script src="/static/js/uikit-icons.min.js"></script>
+    <script src="static/js/jquery.js" type="text/javascript"></script>
+    <meta charset="utf-8">
+</head>
+
+<body>
+<div class="uk-flex uk-flex-center">
+<div class="main">
+    <div class="uk-alert-primary uk-animation-slide-top-medium" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p>Perfil de <?php echo $people['nome'];?> <?php echo $people['sobrenome'];?></p>
+    </div>
+    <div class="uk-flex uk-flex-left">
+        <div class="status-p uk-animation-slide-top-medium">
+            <a href="/profile.php?id=<?php echo $user['id'];?>"><li><img src="/img/avatar/avatar.png" class="wtf">
+            <span>  <?php
+            $nome = $user['nome'] . " " .  $user['sobrenome'];
+  $str2 = nl2br( $nome );
+  $len2 = strlen( $str2 );
+  $max2 = 20;
+   if( $len2 <= $max2 )
+   echo $str2;
+  else    
+   echo substr( $str2, 0, $max2 ) . '...'?></span>
+            </li></a>
+            <div id="setar"><span id="setting" uk-tooltip="Configurações" uk-icon="settings"></span></div>
+            <div class="settings-div">
+                <a href="/profile.php?id=<?php echo $user['id'];?>"><li>Meu perfil</li></a>
+                <a href="/#"><li>Alterar design</li>
+                <a href="/logout"><li>Sair</li>
+            </div>
+            <li><a href="#sejapremium" id="get" uk-toggle uk-tooltip="Ao ser Premium você tem vantangens!">Seja premium</a></li>
+            <hr>
+            <li><a href="/profile.php?id=<?php echo $user['id'];?>" id="linksn">Meu perfil</a></li>
+            <li><a href="#" id="linksn">Seguindo</a></li>
+            <li><a href="#" id="linksn">Seguidores</a></li>
+            <hr>
+            <li><a href="#" id="linksn">Configurações</a></li>
+        </div>
+    </div>
+
+<div id="sejapremium" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Premium</h2>
+        <p>Ao ser premium você tem a suas imagens para todos verem.</p>
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Fechar</button>
+            <button class="uk-button uk-button-primary" type="button">Compre</button>
+        </p>
+    </div>
+</div>
+
+<div id="publish" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Publique seu projeto</h2>
+        <p class="uk-text-right">
+    <div class="uk-inline" style="width: 100%;">
+    <div class="js-upload uk-placeholder uk-text-center">
+    <span uk-icon="icon: cloud-upload"></span>
+    <span class="uk-text-middle">Faça upload do seu desenho/design</span>
+        <form method="POST" enctype="multipart/form-data">
+    <div class="js-upload" uk-form-custom>
+        <input type="file" name="file" multiple>
+        <span class="uk-link" tabindex="-1">Selecione um</span>
+        <br>
+        <span>Obs: Selecione o arquivo e clique em publicar.</span>
+    </div>
+    </div>
+
+
+            <textarea name="about" class="uk-input" id="senha" placeholder="Sobre o projeto" type="text" style="resize: none; height: 150px;"></textarea>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div style="float: right;">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Fechar</button>
+            <input class="uk-button uk-button-default uk-button-primary" type="submit" id="btn2" value="Publicar" name="save" />
+            </form>
+            </div>
+        </p>
+    </div>
+</div>
+
+<?php
+if (isset($_POST['save'])) {
+        if ($_FILES["file"]["error"]>0) {
+            echo "<script language='javascript' type='text/javascript'>alert('Tens de escolher uma foto...');</script>";
+        }else{
+            $n = rand (0, 10000000);
+            $img = preg_replace('/[^\w\._]+/', '', $_FILES["file"]["name"]);
+
+            move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
+
+            $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
+                $form['destaque'] = 0;
+                $form['iduser'] = $user['id'];
+                $form['photo'] = $img;
+                $form['sobre'] = $_POST['about'];
+                if( DBCreate( 'desenhos', $form ) ){
+                    header("Location: /");
+        }
+        else{
+            echo "<script language='javascript' type='text/javascript'>alert('Erro...');</script>";
+        }
+    }
+}
+?>
+
+
+    <div class="uk-flex uk-flex-right">
+        <div class="profiles uk-animation-slide-top-medium">
+         <div class="profile">
+            <div class="background-cover">
+                <div class="avatar-cover">
+
+                </div>
+            </div>
+         </div>
+</div>
+</div>     
+
+<style type="text/css">
+    .background-cover{
+        background-image: url("/img/background/4.jpg");
+    }
+
+    .avatar-cover{
+        background-image: url(/img/avatar/avatar.png);
+    }
+</style>
+
+</body>
+
+</html>
+
+
+<?php } } ?>
