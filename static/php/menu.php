@@ -6,10 +6,11 @@
             <span><?php echo $user['nome'];?></span>
             </li></a>
             <li><a href="#sejapremium" id="get" uk-toggle uk-tooltip="Ao ser Premium você tem vantangens!">Seja premium</a></li>
-            <li><a href="#" id="linksn">Configurações</a></li>
+            <li><a href="#" id="linksn">Meu perfil</a></li>
+            <li><a href="#" id="linksn">Seguindo</a></li>
             <li><a href="#" id="linksn">Seguidores</a></li>
             <hr>
-            <li><a href="#" id="linksn">Meu perfil</a></li>
+            <li><a href="#" id="linksn">Configurações</a></li>
         </div>
     </div>
 
@@ -98,7 +99,7 @@ if (isset($_POST['save'])) {
             </div>
 
             <?php
-                $desenhos = DBRead( 'desenhos', "WHERE id ORDER BY id DESC LIMIT 1" );
+                $desenhos = DBRead( 'desenhos', "WHERE id and destaque = 1 ORDER BY id DESC LIMIT 1" );
                 if (!$desenhos)
                 echo '';    
                 else  
@@ -107,12 +108,12 @@ if (isset($_POST['save'])) {
 
 
             <div class="news uk-animation-slide-top-medium" id="nt">
-                <p>Desenhos publicado recentemente</p>
+                <p>Desenhos da equipe</p>
                 <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider>
 
     <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m">
                 <?php
-                $desenhos = DBRead( 'desenhos', "WHERE id ORDER BY id DESC LIMIT 7" );
+                $desenhos = DBRead( 'desenhos', "WHERE id and destaque = 1 ORDER BY id DESC LIMIT 7" );
                 if (!$desenhos)
                 echo '';    
                 else  
@@ -248,9 +249,10 @@ if (isset($_POST['save'])) {
             /img/avatar/avatar.png" style="border-radius: 50%; left: 10px; position: relative; top: 10px;" width="50" height="50" alt="">
         </div>
         <div class="uk-width-expand">
-            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#"><?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?></a></h4>
+            <h4 style="position: relative; top: 10px;" class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#"><?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?></a></h4>
         </div>
     </header>
+    <hr>
     <div class="uk-comment-body">
         <p style="padding: 5px;"><?php echo $desenho['sobre'];?>
             <img src="img/desenhos/<?php echo $desenho['photo'];?>" style="width: 100%; max-height: 300px;"/>
