@@ -109,7 +109,7 @@
                 ?>
                 <?php
                 $eu = $user['id'];
-                $eudesenheis = DBRead( 'user', "WHERE id <> $eu ORDER BY id DESC LIMIT 1" );
+                $eudesenheis = DBRead( 'user', "WHERE id = $eu ORDER BY id DESC LIMIT 1" );
                 if (!$eudesenheis)
                 echo '';    
                 else  
