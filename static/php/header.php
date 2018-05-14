@@ -29,7 +29,7 @@ if(isset($_COOKIE['iduser']) and (isset($_COOKIE['inisession'])) and (isset($_CO
         <a><span uk-icon="user"></span>Perfil</a>
         <a><span uk-icon="plus"></span>Nova Postagem</a>
         <a><span uk-icon="bell" uk-tooltip="Notificações"></span> <span id="news">1</span></a>
-        <a style="float: right;" href="/logout"><span uk-icon="sign-out"></span></a>
+        <a style="float: right;" href="/logout" uk-tooltip="Sair"><span uk-icon="sign-out"></span></a>
         </div>
         </div>
         </div>
