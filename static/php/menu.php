@@ -2,7 +2,7 @@
 <div class="main">
     <div class="uk-flex uk-flex-left">
         <div class="status-p uk-animation-slide-top-medium">
-            <a href="/profile.php?id=<?php echo $user['id'];?>"><li><img src="/img/avatar/avatar.png" class="wtf">
+            <a href="/profile.php?id=<?php echo $user['id'];?>"><li><img src="/img/avatar/<?php echo $user['photo'];?>" class="wtf">
             <span>  <?php
             $nome = $user['nome'] . " " .  $user['sobrenome'];
   $str2 = nl2br( $nome );
@@ -16,7 +16,7 @@
             <div id="setar"><span id="setting" uk-tooltip="Configurações" uk-icon="settings"></span></div>
             <div class="settings-div">
                 <a href="/profile.php?id=<?php echo $user['id'];?>"><li>Meu perfil</li></a>
-                <a href="/#"><li>Alterar design</li>
+                <a href="/editprofile"><li>Alterar design</li>
                 <a href="/logout"><li>Sair</li>
             </div>
             <li><a href="#sejapremium" id="get" uk-toggle uk-tooltip="Ao ser Premium você tem vantangens!">Seja premium</a></li>
@@ -99,7 +99,7 @@ if (isset($_POST['save'])) {
 if (in_array($_FILES["file"]["type"], $tipos)){
     move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
 if( DBCreate( 'desenhos', $form ) ){
-                    header("Location: /");
+                     echo '<script>location.href="/";</script>';
                 }
 }
 else{
@@ -113,15 +113,18 @@ else{
 
     <div class="uk-flex uk-flex-center">
         <div class="feed uk-animation-slide-top-medium">
-
-   <!--          <div class="news">
+<div class="uk-alert-primary uk-animation-slide-top-medium" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p>Seja bem vindo(a) ao mundo dos artistas.</p>
+    </div>
+        <div class="news">
                 <p>Info</p>
                 <li><a>Nova função</a><span>sistema de logout</span></li>
                 <li><a>Nova função</a><span>sistema de logout</span></li>
             </div>
 
             <?php
-                $desenhos = DBRead( 'desenhos', "WHERE id and destaque = 1 ORDER BY id DESC LIMIT 1" );
+                $desenhos = DBRead( 'desenhos', "WHERE id ORDER BY id DESC LIMIT 1" );
                 if (!$desenhos)
                 echo '';    
                 else  
@@ -130,12 +133,12 @@ else{
 
 
             <div class="news uk-animation-slide-top-medium" id="nt">
-                <p>Desenhos da equipe</p>
+                <p>Desenhos em altas</p>
                 <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider>
 
     <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m">
                 <?php
-                $desenhos = DBRead( 'desenhos', "WHERE id and destaque = 1 ORDER BY id DESC LIMIT 7" );
+                $desenhos = DBRead( 'desenhos', "WHERE id ORDER BY id DESC LIMIT 5" );
                 if (!$desenhos)
                 echo '';    
                 else  
@@ -164,11 +167,7 @@ else{
 
 </div>
             </div>
-        <?php endforeach;?> -->
-        <div class="uk-alert-primary uk-animation-slide-top-medium" uk-alert>
-    <a class="uk-alert-close" uk-close></a>
-    <p>Seja bem vindo(a) ao mundo dos artistas.</p>
-    </div>
+        <?php endforeach;?>
              <div class="news uk-animation-slide-top-medium" id="nt">
                 <p>Sugestão de usuarios</p>
                 <div class="uk-position-relative uk-visible-toggle uk-light" style="height: 50px;" uk-slider>
@@ -184,7 +183,7 @@ else{
                 ?>
                   <a class="nani" href="/profile.php?id=<?php echo $people['id'];?>" title="<?php echo $people['nome'];?>" uk-tooltip="<?php echo $people['nome'];?> <?php echo $people['sobrenome'];?>">
                 <li class="user-s">
-                    <img src="/img/avatar/avatar.png">
+                    <img src="/img/avatar/<?php echo $people['photo'];?>">
                 </li>
                 </a>
             <?php endforeach;?>
@@ -278,16 +277,16 @@ else{
     <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
         <div class="uk-width-auto">
             <img uk-tooltip="<?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?>" class="uk-comment-avatar" src="
-            /img/avatar/avatar.png" style="border-radius: 50%; left: 10px; position: relative; top: 10px;" width="50" height="50" alt="">
+            /img/avatar/<?php echo $eudesenhei['photo'];?>" style="border-radius: 50%; left: 10px; position: relative; top: 10px; height: 50px; width: 50px;" width="50" height="50" alt="">
         </div>
         <div class="uk-width-expand">
-            <h4 style="position: relative; top: 13px;" class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#"><?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?></a></h4>
+            <h4 style="position: relative; top: 13px;" class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="/profile.php?id=<?php echo $eudesenhei['id']; ?>"><?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?></a></h4>
         </div>
     </header>
     <hr>
     <div class="uk-comment-body">
         <p style="padding: 5px;"><?php echo $desenho['sobre'];?>
-            <img src="img/desenhos/<?php echo $desenho['photo'];?>" style="width: 100%; max-height: 300px;"/>
+            <img src="img/desenhos/<?php echo $desenho['photo'];?>" style="width: 100%; max-height: auto; max-height: 800px;"/>
         </p>
           <p class="totallike" id="totallike<?php echo $desenho['id']; ?>"><?php echo $totalcurtida;?> curtiram isso</p>
          <div id="bottom-post">

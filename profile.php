@@ -39,6 +39,8 @@ $people = $people[0];
 </head>
 
 <body>
+<div id="background-cover"></div>
+<div class="overflow"></div>
 <div class="uk-flex uk-flex-center">
 <div class="main">
     <div class="uk-alert-primary uk-animation-slide-top-medium" uk-alert>
@@ -47,7 +49,7 @@ $people = $people[0];
     </div>
     <div class="uk-flex uk-flex-left">
         <div class="status-p uk-animation-slide-top-medium">
-            <a href="/profile.php?id=<?php echo $user['id'];?>"><li><img src="/img/avatar/avatar.png" class="wtf">
+            <a href="/profile.php?id=<?php echo $user['id'];?>"><li><img src="/img/avatar/<?php echo $people['photo'];?>" class="wtf">
             <span>  <?php
             $nome = $user['nome'] . " " .  $user['sobrenome'];
   $str2 = nl2br( $nome );
@@ -61,7 +63,7 @@ $people = $people[0];
             <div id="setar"><span id="setting" uk-tooltip="Configurações" uk-icon="settings"></span></div>
             <div class="settings-div">
                 <a href="/profile.php?id=<?php echo $user['id'];?>"><li>Meu perfil</li></a>
-                <a href="/#"><li>Alterar design</li>
+                <a href="/editprofile"><li>Alterar design</li>
                 <a href="/logout"><li>Sair</li>
             </div>
             <li><a href="#sejapremium" id="get" uk-toggle uk-tooltip="Ao ser Premium você tem vantangens!">Seja premium</a></li>
@@ -133,7 +135,7 @@ if (isset($_POST['save'])) {
                 $form['photo'] = $img;
                 $form['sobre'] = $_POST['about'];
                 if( DBCreate( 'desenhos', $form ) ){
-                    echo '';
+                     echo '<script>location.href="/";</script>';
             }
         else{
             echo "<script language='javascript' type='text/javascript'>alert('Erro...');</script>";
@@ -147,21 +149,45 @@ if (isset($_POST['save'])) {
         <div class="profiles uk-animation-slide-top-medium">
          <div class="profile">
             <div class="background-cover">
-                <div class="avatar-cover">
-
+                <div class="avatar-cover"></div>
+                 <div class="back">
+                    <div class="seguir">
+                    <?php
+                    if($people['id'] == $user['id']){
+                    ?>
+                        <a><button class="uk-button uk-button-primary"><span uk-icon="info"></span>       Atividades</button></a>
+                        <a href="/editprofile"><button class="uk-button uk-button-primary"><span uk-icon="pencil"></span>       Editar perfil</button></a>
+                    <?php } else{ ?>
+                        <button class="uk-button uk-button-primary"><span uk-icon="plus"></span>       Seguir</button>
+                        <button class="uk-button uk-button-primary"><span uk-icon="warning"></span>       Bloquear</button>
+                    <?php } ?>
+                    </div>
                 </div>
             </div>
+
+
          </div>
 </div>
-</div>     
+</div>    
+
 
 <style type="text/css">
     .background-cover{
-        background-image: url("/img/background/4.jpg");
+        background-image: url("/img/background/<?php echo $people['capa'];?>");
     }
 
     .avatar-cover{
-        background-image: url(/img/avatar/avatar.png);
+        background-image: url(/img/avatar/<?php echo $people['photo'];?>);
+    }
+
+    #background-cover{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-image: url(/img/background/<?php echo $people['background'];?>);
+        background-size: cover;
     }
 </style>
 
