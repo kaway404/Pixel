@@ -290,3 +290,22 @@ body{
 	padding: 5px;
 	color: #fff;
 }
+
+.slider{
+	height: 130px !important;
+}
+
+.slider .uk-inline{
+	width: 150px;
+	height: 80px;
+	background: transparent;
+}
+
+.slider img{
+	width: 150px;
+	height: 80px;
+}
+
+.slider #photoho{
+	width: 160px;
+}
