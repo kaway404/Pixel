@@ -26,10 +26,9 @@ if(isset($_COOKIE['iduser']) and (isset($_COOKIE['inisession'])) and (isset($_CO
         <div class="header-align">
         <a><span uk-icon="home"></span>Ínicio</a>
         <a><span uk-icon="heart"></span>Favoritos</a>
-        <a><span uk-icon="user"></span>Perfil</a>
+        <a href="/profile.php?id=<?php echo $user['id'];?>"><span uk-icon="user"></span>Perfil</a>
         <a uk-tooltip="Publicar uma postagem" href="#publish" uk-toggle><span uk-icon="plus"></span>Nova Postagem</a>
         <a><span uk-icon="bell" uk-tooltip="Notificações"></span> <span id="news">1</span></a>
-        <a style="float: right;" href="/logout" uk-tooltip="Sair"><span uk-icon="sign-out"></span></a>
         </div>
         </div>
         </div>

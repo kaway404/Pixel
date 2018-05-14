@@ -333,3 +333,55 @@ body{
 #publish{
 	z-index: 5000;
 }
+
+#setting{
+	background: #eee;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+#setting:hover{
+	background: #555;
+	color: #fff;
+}
+
+#setar{
+	position: relative;
+	right: 20px;
+	float: right;
+	position: relative;
+	top: -40px;
+	width: auto;
+	height: auto;
+}
+
+.settings-div{
+	width: 140px;
+	background: #fff;
+	height: auto;
+	position: absolute;
+	z-index: 300;
+	float: right;
+	right: 0;
+	top: 69px;
+	border: 2px solid #D6DEE5;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.50);
+	display: none;
+}
+
+.settings-div li{
+	width: 90%;
+	cursor: pointer;
+}
+
+.settings-div li:hover{
+	background: #eee;
+}
+
+.settings-div:hover{
+	display: block;
+}
+
+#setar:hover + .settings-div{
+	display: block;
+}

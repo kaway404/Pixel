@@ -13,9 +13,15 @@
   else    
    echo substr( $str2, 0, $max2 ) . '...'?></span>
             </li></a>
+            <div id="setar"><span id="setting" uk-tooltip="Configurações" uk-icon="settings"></span></div>
+            <div class="settings-div">
+                <a href="/profile.php?id=<?php echo $user['id'];?>"><li>Meu perfil</li></a>
+                <a href="/#"><li>Alterar design</li>
+                <a href="/logout"><li>Sair</li>
+            </div>
             <li><a href="#sejapremium" id="get" uk-toggle uk-tooltip="Ao ser Premium você tem vantangens!">Seja premium</a></li>
             <hr>
-            <li><a href="#" id="linksn">Meu perfil</a></li>
+            <li><a href="/profile.php?id=<?php echo $user['id'];?>" id="linksn">Meu perfil</a></li>
             <li><a href="#" id="linksn">Seguindo</a></li>
             <li><a href="#" id="linksn">Seguidores</a></li>
             <hr>
@@ -252,7 +258,7 @@ if (isset($_POST['save'])) {
             /img/avatar/avatar.png" style="border-radius: 50%; left: 10px; position: relative; top: 10px;" width="50" height="50" alt="">
         </div>
         <div class="uk-width-expand">
-            <h4 style="position: relative; top: 10px;" class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#"><?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?></a></h4>
+            <h4 style="position: relative; top: 13px;" class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#"><?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?></a></h4>
         </div>
     </header>
     <hr>
