@@ -233,7 +233,6 @@ $(document).ready(function() {
 
 <?php
     if(isset($_COOKIE['iduser'])){
-    if(isset($_GET['verificarsessao'])){
 ?>
 
 <div class="background-fixed">
@@ -280,7 +279,7 @@ $(document).ready(function() {
 });
 </script>
 
-<?php } }  else{ ?>
+<?php }  else{ ?>
 
 <div class="background-fixed">
 	<div class="uk-flex uk-flex-center">
@@ -315,7 +314,7 @@ $(document).ready(function() {
 
 <div id="resposta" class="uk-animation-slide-bottom-medium uk-animation"></div>
 
-<h1 class="ui uk-animation-slide-bottom-medium uk-animation" style="bottom: 20px; position: relative;">Cadastra-se</h1>
+<h1 class="ui uk-animation-slide-bottom-medium uk-animation" style="bottom: 20px; position: relative;">Não tenho uma conta</h1>
 <a href="/?register=1"><button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" style="position: relative; bottom: -10px;">Cadastrar</button></a>
 
 	</div>
