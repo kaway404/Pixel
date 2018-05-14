@@ -37,17 +37,16 @@
         <h2 class="uk-modal-title">Publique seu projeto</h2>
         <p class="uk-text-right">
     <div class="uk-inline" style="width: 100%;">
-    <form method="POST" enctype="multipart/form-data">
     <div class="js-upload uk-placeholder uk-text-center">
     <span uk-icon="icon: cloud-upload"></span>
     <span class="uk-text-middle">Faça upload do seu desenho/design</span>
+        <form method="POST" enctype="multipart/form-data">
     <div uk-form-custom>
         <input type="file" name="file" multiple>
         <span class="uk-link">Selecione um</span>
     </div>
-</div>
+    </div>
 
-<progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
             <textarea class="uk-input" id="senha" placeholder="Sobre o projeto" type="text" style="resize: none; height: 150px;"></textarea>
             </div>
             <br>
@@ -71,7 +70,6 @@ if (isset($_POST['save'])) {
             $img = preg_replace('/[^\w\._]+/', '', $_FILES["file"]["name"]);
 
             move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
-            echo '';
 
             $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
                 $form['destaque'] = 0;
@@ -79,6 +77,9 @@ if (isset($_POST['save'])) {
                 $form['photo'] = $img;
                 if( DBCreate( 'desenhos', $form ) ){
                     header("Location: /");
+        }
+        else{
+            echo "<script language='javascript' type='text/javascript'>alert('Erro...');</script>";
         }
     }
 }
@@ -99,7 +100,7 @@ if (isset($_POST['save'])) {
 
     <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m">
                 <?php
-                $desenhos = DBRead( 'desenhos', "WHERE id and destaque = 1 ORDER BY id DESC LIMIT 7" );
+                $desenhos = DBRead( 'desenhos', "WHERE id ORDER BY id DESC LIMIT 7" );
                 if (!$desenhos)
                 echo '';    
                 else  
