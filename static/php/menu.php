@@ -87,11 +87,13 @@ if (isset($_POST['save'])) {
                 $form['iduser'] = $user['id'];
                 $form['photo'] = $img;
                 $form['sobre'] = $_POST['about'];
+                if ( ereg("image", $img) ){
                 if( DBCreate( 'desenhos', $form ) ){
                     header("Location: /");
         }
+        }
         else{
-            echo "<script language='javascript' type='text/javascript'>alert('Erro...');</script>";
+             echo "<script language='javascript' type='text/javascript'>alert('Não é uma imagem...');</script>";
         }
     }
 }
