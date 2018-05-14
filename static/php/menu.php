@@ -179,6 +179,7 @@ if (isset($_POST['save'])) {
                 else  
                     foreach ($desenhos as $desenho):   
                 ?>
+                <!-- 
 <div class="news slider">
 <p>Desenhos da equipe</p>
 <div class="uk-position-relative uk-visible-toggle uk-light" style="height: 90px;" uk-slider>
@@ -220,6 +221,7 @@ if (isset($_POST['save'])) {
 
 
         </div>
+         -->
 
     <?php endforeach; ?>
 
