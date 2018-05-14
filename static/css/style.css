@@ -210,6 +210,15 @@ body{
 	margin-top: 20px;
 }
 
+.newst{
+	width: 100%;
+	height: auto;
+	padding-bottom: 10px;
+	background: #fff;
+	border: 1px solid #d6dee5;
+	margin-top: 20px;
+}
+
 .news p{
 	color: #333;
 	width: 100%;

@@ -223,9 +223,48 @@ if (isset($_POST['save'])) {
 
     <?php endforeach; ?>
 
+ <?php
+                $desenhos = DBRead( 'desenhos', "WHERE id ORDER BY id DESC LIMIT 7" );
+                if (!$desenhos)
+                echo '';    
+                else  
+                    foreach ($desenhos as $desenho):   
+                ?>
+                <?php
+                $eu = $desenho['iduser'];
+                $eudesenheis = DBRead( 'user', "WHERE id = $eu ORDER BY id DESC LIMIT 1" );
+                if (!$eudesenheis)
+                echo '';    
+                else  
+                    foreach ($eudesenheis as $eudesenhei):   
+                ?>
+<div class="newst">
+<article class="uk-comment">
+    <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-auto">
+            <img class="uk-comment-avatar" src="
+            /img/avatar/avatar.png" style="border-radius: 50%; left: 10px; position: relative; top: 10px;" width="50" height="50" alt="">
+        </div>
+        <div class="uk-width-expand">
+            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#"><?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?></a></h4>
+        </div>
+    </header>
+    <div class="uk-comment-body">
+        <p style="padding: 5px;"><?php echo $desenho['sobre'];?>
+            <img src="img/desenhos/<?php echo $desenho['photo'];?>" style="width: 100%; max-height: 300px;"/>
+        </p>
+    </div>
+</article>
+</div>
+<?php endforeach; endforeach ; ?>
 
 
     </div>
+
+
+
+
+
 </div>
 
 
