@@ -133,8 +133,8 @@ if (isset($_POST['save'])) {
                 $form['photo'] = $img;
                 $form['sobre'] = $_POST['about'];
                 if( DBCreate( 'desenhos', $form ) ){
-                    header("Location: /");
-        }
+                    echo '';
+            }
         else{
             echo "<script language='javascript' type='text/javascript'>alert('Erro...');</script>";
         }
