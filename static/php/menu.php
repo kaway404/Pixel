@@ -152,7 +152,7 @@ if (isset($_POST['save'])) {
             </div>
         <?php endforeach;?> -->
 
-           <!--  <div class="news uk-animation-slide-top-medium" id="nt">
+             <div class="news uk-animation-slide-top-medium" id="nt">
                 <p>Sugestão de usuarios</p>
                 <div class="uk-position-relative uk-visible-toggle uk-light" style="height: 50px;" uk-slider>
 
@@ -165,7 +165,7 @@ if (isset($_POST['save'])) {
                 else  
                     foreach ($peoples as $people):   
                 ?>
-                  <a class="nani" title="<?php echo $people['nome'];?>" uk-tooltip="<?php echo $people['nome'];?> <?php echo $people['sobrenome'];?>">
+                  <a class="nani" href="/profile.php?id=<?php echo $people['id'];?>" title="<?php echo $people['nome'];?>" uk-tooltip="<?php echo $people['nome'];?> <?php echo $people['sobrenome'];?>">
                 <li class="user-s">
                     <img src="/img/avatar/avatar.png">
                 </li>
@@ -179,7 +179,7 @@ if (isset($_POST['save'])) {
 </div>
 
 
-            </div> -->
+            </div> 
                             <!-- 
                 <?php
                 $desenhos = DBRead( 'desenhos', "WHERE id and destaque = 1 ORDER BY id DESC LIMIT 1" );
