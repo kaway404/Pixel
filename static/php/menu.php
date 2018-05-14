@@ -19,8 +19,8 @@
         <h2 class="uk-modal-title">Premium</h2>
         <p>Premium tem varias vantagens, umas delas é fixar seus projetos para todo mundo ver.</p>
         <p class="uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Sair</button>
-            <button class="uk-button uk-button-primary" type="button">Pagar</button>
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Fechar</button>
+            <button class="uk-button uk-button-primary" type="button">Compre</button>
         </p>
     </div>
 </div>
