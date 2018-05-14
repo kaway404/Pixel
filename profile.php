@@ -49,7 +49,7 @@ $people = $people[0];
     </div>
     <div class="uk-flex uk-flex-left">
         <div class="status-p uk-animation-slide-top-medium">
-            <a href="/profile.php?id=<?php echo $user['id'];?>"><li><img src="/img/avatar/<?php echo $people['photo'];?>" class="wtf">
+            <a href="/profile.php?id=<?php echo $user['id'];?>"><li><img src="/img/avatar/<?php echo $user['photo'];?>" class="wtf">
             <span>  <?php
             $nome = $user['nome'] . " " .  $user['sobrenome'];
   $str2 = nl2br( $nome );
