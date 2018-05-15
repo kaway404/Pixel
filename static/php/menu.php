@@ -312,7 +312,7 @@ echo '<script>location.href="/";</script>';
             <?php if(empty($desenho['photo'])){ echo '';}else{?>
 <div class="uk-child-width-1-3@m" uk-grid uk-lightbox="animation: scale">
     <div style="width: 100%; max-height: 800px;">
-        <a class="uk-inline" href="img/desenhos/<?php echo $desenho['photo'];?>" data-caption="<?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?> :  <?php echo $desenho['sobre'];?>" style="width: 100%; max-height: auto; max-height: 800px;">
+        <a class="uk-inline" href="img/desenhos/<?php echo $desenho['photo'];?>" data-caption="<?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?> :  <?php echo $desenho['sobre'];?>" style="width: 100%; max-height: 800px;">
             <img src="img/desenhos/<?php echo $desenho['photo'];?>" style="width: 100%; max-height: 800px;" alt=""/>
         </a>
     </div>
