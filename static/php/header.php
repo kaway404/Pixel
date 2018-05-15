@@ -18,7 +18,7 @@ if(isset($_COOKIE['iduser']) and (isset($_COOKIE['inisession'])) and (isset($_CO
 
 <div class="header uk-animation-slide-top-small">
     <div class="uk-flex uk-flex-center">
-    <div class="header-align"><h1>Pixel</h1></div>
+    <div class="header-align"><a href="/" id="logos"><h1>Pixel</h1></a></div>
     </div>
     <div class="uk-flex uk-flex-left">
         <div class="tabs">

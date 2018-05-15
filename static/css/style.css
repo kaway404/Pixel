@@ -392,7 +392,7 @@ body{
 .profile{
 	width: 100%;
 	height: auto;
-	background: red;
+	background: transparent;
 	position: relative;
 	top: 25px;
 	float: right;
@@ -466,13 +466,14 @@ body{
 
 .seguir{
 	float: right;
-	position: absolute;
+	position: relative;
 	width: auto;
 	height: auto;
 	background: rgba(0,0,0,.80);
-	bottom: 0;
-	right: 0;
+	top: 235px;
+	right: 10px;
 	padding: 10px;
+	z-index: 300;
 }
 
 .editprofile{
@@ -514,4 +515,13 @@ body{
 	position: fixed;
 	top: 0;
 	left: 0;
+}
+
+#logos:hover{
+	text-decoration: none;
+}
+
+.postagem{
+	position: relative;
+	top: 40px;
 }

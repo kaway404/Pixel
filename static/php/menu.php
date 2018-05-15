@@ -114,13 +114,12 @@ else{
     <div class="uk-flex uk-flex-center">
         <div class="feed uk-animation-slide-top-medium">
 <div class="uk-alert-primary uk-animation-slide-top-medium" uk-alert>
-    <a class="uk-alert-close" uk-close></a>
+    <a class="uk-alert-close"></a>
     <p>Seja bem vindo(a) ao mundo dos artistas.</p>
     </div>
         <div class="news">
                 <p>Info</p>
-                <li><a>Nova função</a><span>sistema de logout</span></li>
-                <li><a>Nova função</a><span>sistema de logout</span></li>
+                <li><a>Nova função</a><span>sistema de mudar de foto</span></li>
             </div>
 
             <?php
@@ -155,7 +154,6 @@ else{
                 <li uk-tooltip="Feito por <?php echo $eudesenhei['nome']; ?> <?php echo $eudesenhei['sobrenome']; ?> <br> <?php echo $desenho['sobre']; ?>  ">
                     <img src="/img/desenhos/<?php echo $desenho['photo'];?>">
                     <div id="bottom-news">
-                        <span uk-tooltip="Curtir" uk-icon="heart" style="color: #555; float: right"></span>
                          <span uk-tooltip="Ver mais" uk-icon="more" style="color: #555; float: right"></span> 
                     </div>
                  </li>
@@ -168,6 +166,14 @@ else{
 </div>
             </div>
         <?php endforeach;?>
+        <?php
+                $eu = $user['id'];
+                $peoples = DBRead( 'user', "WHERE id <> $eu ORDER BY id DESC LIMIT 1" );
+                if (!$peoples)
+                echo '';    
+                else  
+                    foreach ($peoples as $people):   
+                ?>
              <div class="news uk-animation-slide-top-medium" id="nt">
                 <p>Sugestão de usuarios</p>
                 <div class="uk-position-relative uk-visible-toggle uk-light" style="height: 50px;" uk-slider>
@@ -196,6 +202,7 @@ else{
 
 
             </div> 
+        <?php endforeach; ?>
                             <!-- 
                 <?php
                 $desenhos = DBRead( 'desenhos', "WHERE id and destaque = 1 ORDER BY id DESC LIMIT 1" );
