@@ -138,8 +138,8 @@ if (!$people){
 
 <?php
 if (isset($_POST['save'])) {
-        if ($_FILES["file"]["error"]>0) {
-            echo "<script language='javascript' type='text/javascript'>alert('Tens de escolher uma foto...');</script>";
+       if(empty($_POST['about'])){
+            echo "<script language='javascript' type='text/javascript'>alert('Tens que escrever alguma coisa');</script>";
         }else{
             $n = rand (0, 10000000);
             $img2 = preg_replace('/[^\w\._]+/', '', $_FILES["file"]["name"]);
@@ -149,26 +149,38 @@ if (isset($_POST['save'])) {
 
 
             $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
-                $form['destaque'] = 0;
+
+if ($_FILES["file"]["error"]>0) {
+    $form['destaque'] = 0;
                 $form['iduser'] = $user['id'];
-                $form['photo'] = $img;
+                $form['photo'] = "";
                 $form['sobre'] = $_POST['about'];
                 $tipos=array(
                     'image/gif',
                     'image/jpeg',
                     'image/png',
                 );
-
-
-if (in_array($_FILES["file"]["type"], $tipos)){
-    move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
-if( DBCreate( 'desenhos', $form ) ){
-                     echo '<script>location.href="/";</script>';
-                }
+           DBCreate( 'desenhos', $form );
+        echo '<script>location.href="/";</script>';
 }
 else{
-    echo "<script language='javascript' type='text/javascript'>alert('Não é uma imagem...');</script>";
+                $tipos=array(
+                    'image/gif',
+                    'image/jpeg',
+                    'image/png',
+                );
+if (in_array($_FILES["file"]["type"], $tipos)){
+move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
+$form['destaque'] = 0;
+                $form['iduser'] = $user['id'];
+                $form['photo'] = $img;
+                $form['sobre'] = $_POST['about'];
+DBCreate( 'desenhos', $form );
+echo '<script>location.href="/";</script>';
 }
+}
+
+
             
     }
 }
@@ -350,12 +362,21 @@ $peopleid = $people['id'];
     </header>
     <hr>
     <div class="uk-comment-body">
-        <p style="padding: 5px;"><?php echo $desenho['sobre'];?>
-            <img src="img/desenhos/<?php echo $desenho['photo'];?>" style="width: 100%; max-height: auto; max-height: 800px;"/>
-        </p>
+        <?php if(empty($desenho['sobre'])){ echo '';}else{?>
+                    <p style="padding: 5px;"><?php echo $desenho['sobre'];?></p>
+            <?Php }?>
+            <?php if(empty($desenho['photo'])){ echo '';}else{?>
+<div class="uk-child-width-1-3@m" uk-grid uk-lightbox="animation: scale">
+    <div style="width: 100%; max-height: 800px;">
+        <a class="uk-inline" href="img/desenhos/<?php echo $desenho['photo'];?>" data-caption="<?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?> :  <?php echo $desenho['sobre'];?>" style="width: 100%; max-height: auto; max-height: 800px;">
+            <img src="img/desenhos/<?php echo $desenho['photo'];?>" style="width: 100%; max-height: 800px;" alt=""/>
+        </a>
+    </div>
+</div>
+            <?Php }?>
           <p class="totallike" id="totallike<?php echo $desenho['id']; ?>"><?php echo $totalcurtida;?> curtiram isso</p>
          <div id="bottom-post">
-                        <?php
+<?php
 $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
 $comentiduser = $desenho['id'];
 $likes = DBRead( 'like', "WHERE idpost = $comentiduser and iduser = $iduser ORDER BY id DESC" );

@@ -103,8 +103,8 @@ if(isset($_COOKIE['iduser']) and (isset($_COOKIE['inisession'])) and (isset($_CO
 
 <?php
 if (isset($_POST['save'])) {
-        if ($_FILES["file"]["error"]>0) {
-            echo "<script language='javascript' type='text/javascript'>alert('Tens de escolher uma foto...');</script>";
+       if(empty($_POST['about'])){
+            echo "<script language='javascript' type='text/javascript'>alert('Tens que escrever alguma coisa');</script>";
         }else{
             $n = rand (0, 10000000);
             $img2 = preg_replace('/[^\w\._]+/', '', $_FILES["file"]["name"]);
@@ -114,26 +114,38 @@ if (isset($_POST['save'])) {
 
 
             $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
-                $form['destaque'] = 0;
+
+if ($_FILES["file"]["error"]>0) {
+    $form['destaque'] = 0;
                 $form['iduser'] = $user['id'];
-                $form['photo'] = $img;
+                $form['photo'] = "";
                 $form['sobre'] = $_POST['about'];
                 $tipos=array(
                     'image/gif',
                     'image/jpeg',
                     'image/png',
                 );
-
-
-if (in_array($_FILES["file"]["type"], $tipos)){
-    move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
-if( DBCreate( 'desenhos', $form ) ){
-                    echo '<script>location.href="/";</script>';
-                }
+           DBCreate( 'desenhos', $form );
+        echo '<script>location.href="/";</script>';
 }
 else{
-    echo "<script language='javascript' type='text/javascript'>alert('Não é uma imagem...');</script>";
+                $tipos=array(
+                    'image/gif',
+                    'image/jpeg',
+                    'image/png',
+                );
+if (in_array($_FILES["file"]["type"], $tipos)){
+move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
+$form['destaque'] = 0;
+                $form['iduser'] = $user['id'];
+                $form['photo'] = $img;
+                $form['sobre'] = $_POST['about'];
+DBCreate( 'desenhos', $form );
+echo '<script>location.href="/";</script>';
 }
+}
+
+
             
     }
 }
