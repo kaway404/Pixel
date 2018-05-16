@@ -46,7 +46,7 @@ if(isset($_COOKIE['iduser']) and (isset($_COOKIE['inisession'])) and (isset($_CO
             $nome = $user['nome'] . " " .  $user['sobrenome'];
   $str2 = nl2br( $nome );
   $len2 = strlen( $str2 );
-  $max2 = 20;
+  $max2 = 15;
    if( $len2 <= $max2 )
    echo $str2;
   else    
@@ -103,9 +103,6 @@ if(isset($_COOKIE['iduser']) and (isset($_COOKIE['inisession'])) and (isset($_CO
 
 <?php
 if (isset($_POST['save'])) {
-       if(empty($_POST['about'])){
-            echo "<script language='javascript' type='text/javascript'>alert('Tens que escrever alguma coisa');</script>";
-        }else{
             $n = rand (0, 10000000);
             $img2 = preg_replace('/[^\w\._]+/', '', $_FILES["file"]["name"]);
             $imgsha = sha1($img2) . ".png";
@@ -113,10 +110,19 @@ if (isset($_POST['save'])) {
 
 
 
-            $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
+$iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
+
+
+   if(empty($_POST['about'])){
+                            $tipos=array(
+                    'image/gif',
+                    'image/jpeg',
+                    'image/png',
+                );
+        }
 
 if ($_FILES["file"]["error"]>0) {
-    $form['destaque'] = 0;
+                $form['destaque'] = 0;
                 $form['iduser'] = $user['id'];
                 $form['photo'] = "";
                 $form['sobre'] = $_POST['about'];
@@ -134,6 +140,7 @@ else{
                     'image/jpeg',
                     'image/png',
                 );
+
 if (in_array($_FILES["file"]["type"], $tipos)){
 move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
 $form['destaque'] = 0;
@@ -143,11 +150,12 @@ $form['destaque'] = 0;
 DBCreate( 'desenhos', $form );
 echo '<script>location.href="/";</script>';
 }
+
 }
 
 
             
-    }
+
 }
 ?>
 

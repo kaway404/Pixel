@@ -7,7 +7,7 @@
             $nome = $user['nome'] . " " .  $user['sobrenome'];
   $str2 = nl2br( $nome );
   $len2 = strlen( $str2 );
-  $max2 = 20;
+  $max2 = 11;
    if( $len2 <= $max2 )
    echo $str2;
   else    
@@ -74,9 +74,6 @@
 
 <?php
 if (isset($_POST['save'])) {
-       if(empty($_POST['about'])){
-            echo "<script language='javascript' type='text/javascript'>alert('Tens que escrever alguma coisa');</script>";
-        }else{
             $n = rand (0, 10000000);
             $img2 = preg_replace('/[^\w\._]+/', '', $_FILES["file"]["name"]);
             $imgsha = sha1($img2) . ".png";
@@ -84,10 +81,19 @@ if (isset($_POST['save'])) {
 
 
 
-            $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
+$iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
+
+
+   if(empty($_POST['about'])){
+                            $tipos=array(
+                    'image/gif',
+                    'image/jpeg',
+                    'image/png',
+                );
+        }
 
 if ($_FILES["file"]["error"]>0) {
-    $form['destaque'] = 0;
+                $form['destaque'] = 0;
                 $form['iduser'] = $user['id'];
                 $form['photo'] = "";
                 $form['sobre'] = $_POST['about'];
@@ -105,6 +111,7 @@ else{
                     'image/jpeg',
                     'image/png',
                 );
+
 if (in_array($_FILES["file"]["type"], $tipos)){
 move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
 $form['destaque'] = 0;
@@ -114,18 +121,19 @@ $form['destaque'] = 0;
 DBCreate( 'desenhos', $form );
 echo '<script>location.href="/";</script>';
 }
+
 }
 
 
             
-    }
+
 }
 ?>
 
 
     <div class="uk-flex uk-flex-center">
         <div class="feed uk-animation-slide-top-medium">
-<div class="uk-alert-primary uk-animation-slide-top-medium" uk-alert>
+    <div class="uk-alert-primary uk-animation-slide-top-medium" uk-alert>
     <a class="uk-alert-close"></a>
     <p>Seja bem vindo(a) ao mundo dos artistas.</p>
     </div>
@@ -271,6 +279,8 @@ echo '<script>location.href="/";</script>';
 
     <?php endforeach; ?>
              -->
+
+
  <?php
                 $desenhos = DBRead( 'desenhos', "WHERE id ORDER BY id DESC LIMIT 7" );
                 if (!$desenhos)

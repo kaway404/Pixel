@@ -58,7 +58,7 @@ if (!$people){
             $nome = $user['nome'] . " " .  $user['sobrenome'];
   $str2 = nl2br( $nome );
   $len2 = strlen( $str2 );
-  $max2 = 20;
+  $max2 = 11;
    if( $len2 <= $max2 )
    echo $str2;
   else    
@@ -104,87 +104,6 @@ if (!$people){
 </div>
 
 
-<div id="publish" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body">
-        <h2 class="uk-modal-title">Publique seu projeto</h2>
-        <p class="uk-text-right">
-    <div class="uk-inline" style="width: 100%;">
-    <div class="js-upload uk-placeholder uk-text-center">
-    <span uk-icon="icon: cloud-upload"></span>
-    <span class="uk-text-middle">Faça upload do seu desenho/design</span>
-        <form method="POST" enctype="multipart/form-data">
-    <div class="js-upload" uk-form-custom>
-        <input type="file" name="file" multiple>
-        <span class="uk-link" tabindex="-1">Selecione um</span>
-        <br>
-        <span>Obs: Selecione o arquivo e clique em publicar.</span>
-    </div>
-    </div>
-
-
-            <textarea name="about" class="uk-input" id="senha" placeholder="Sobre o projeto" type="text" style="resize: none; height: 150px;"></textarea>
-            </div>
-            <br>
-            <br>
-            <br>
-            <div style="float: right;">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Fechar</button>
-            <input class="uk-button uk-button-default uk-button-primary" type="submit" id="btn2" value="Publicar" name="save" />
-            </form>
-            </div>
-        </p>
-    </div>
-</div>
-
-<?php
-if (isset($_POST['save'])) {
-       if(empty($_POST['about'])){
-            echo "<script language='javascript' type='text/javascript'>alert('Tens que escrever alguma coisa');</script>";
-        }else{
-            $n = rand (0, 10000000);
-            $img2 = preg_replace('/[^\w\._]+/', '', $_FILES["file"]["name"]);
-            $imgsha = sha1($img2) . ".png";
-            $img = "pixel_photo." . $imgsha;
-
-
-
-            $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
-
-if ($_FILES["file"]["error"]>0) {
-    $form['destaque'] = 0;
-                $form['iduser'] = $user['id'];
-                $form['photo'] = "";
-                $form['sobre'] = $_POST['about'];
-                $tipos=array(
-                    'image/gif',
-                    'image/jpeg',
-                    'image/png',
-                );
-           DBCreate( 'desenhos', $form );
-        echo '<script>location.href="/";</script>';
-}
-else{
-                $tipos=array(
-                    'image/gif',
-                    'image/jpeg',
-                    'image/png',
-                );
-if (in_array($_FILES["file"]["type"], $tipos)){
-move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
-$form['destaque'] = 0;
-                $form['iduser'] = $user['id'];
-                $form['photo'] = $img;
-                $form['sobre'] = $_POST['about'];
-DBCreate( 'desenhos', $form );
-echo '<script>location.href="/";</script>';
-}
-}
-
-
-            
-    }
-}
-?>
 
 
 <?php }  else{?>
@@ -196,7 +115,7 @@ echo '<script>location.href="/";</script>';
     <a class="uk-alert-close"></a>
     <p>Perfil de <?php echo $people['nome'];?> <?php echo $people['sobrenome'];?></p>
     </div>
-    <div class="uk-flex uk-flex-left">
+    <!-- <div class="uk-flex uk-flex-left">
         <div class="status-p uk-animation-slide-top-medium">
             <a href="/profile.php?id=<?php echo $user['id'];?>"><li><img src="/img/avatar/<?php echo $user['photo'];?>" class="wtf">
             <span>  <?php
@@ -223,7 +142,7 @@ echo '<script>location.href="/";</script>';
             <hr>
             <li><a href="#" id="linksn">Configurações</a></li>
         </div>
-    </div>
+    </div> -->
 
 <div id="sejapremium" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
@@ -267,39 +186,61 @@ echo '<script>location.href="/";</script>';
         </p>
     </div>
 </div>
-
 <?php
 if (isset($_POST['save'])) {
-        if ($_FILES["file"]["error"]>0) {
-            echo "<script language='javascript' type='text/javascript'>alert('Tens de escolher uma foto...');</script>";
-        }else{
             $n = rand (0, 10000000);
-             $img2 = preg_replace('/[^\w\._]+/', '', $_FILES["file"]["name"]);
+            $img2 = preg_replace('/[^\w\._]+/', '', $_FILES["file"]["name"]);
             $imgsha = sha1($img2) . ".png";
             $img = "pixel_photo." . $imgsha;
-            $tipos=array(
+
+
+
+$iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
+
+
+   if(empty($_POST['about'])){
+                            $tipos=array(
+                    'image/gif',
+                    'image/jpeg',
+                    'image/png',
+                );
+        }
+
+if ($_FILES["file"]["error"]>0) {
+                $form['destaque'] = 0;
+                $form['iduser'] = $user['id'];
+                $form['photo'] = "";
+                $form['sobre'] = $_POST['about'];
+                $tipos=array(
+                    'image/gif',
+                    'image/jpeg',
+                    'image/png',
+                );
+           DBCreate( 'desenhos', $form );
+        echo '<script>location.href="/";</script>';
+}
+else{
+                $tipos=array(
                     'image/gif',
                     'image/jpeg',
                     'image/png',
                 );
 
-            move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
-
-            $iduser = DBEscape( strip_tags(trim($_COOKIE['iduser']) ) );
-                $form['destaque'] = 0;
+if (in_array($_FILES["file"]["type"], $tipos)){
+move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
+$form['destaque'] = 0;
                 $form['iduser'] = $user['id'];
                 $form['photo'] = $img;
                 $form['sobre'] = $_POST['about'];
-             if (in_array($_FILES["file"]["type"], $tipos)){
-    move_uploaded_file($_FILES['file']['tmp_name'], "img/desenhos/".$img);
-if( DBCreate( 'desenhos', $form ) ){
-                     echo '<script>location.href="/";</script>';
-                }
+DBCreate( 'desenhos', $form );
+echo '<script>location.href="/";</script>';
 }
-else{
-    echo "<script language='javascript' type='text/javascript'>alert('Não é uma imagem...');</script>";
+
 }
-    }
+
+
+            
+
 }
 ?>
 
@@ -308,7 +249,13 @@ else{
         <div class="profiles uk-animation-slide-top-medium">
          <div class="profile">
             <div class="background-cover">
-                <div class="avatar-cover"></div>
+                <div class="avatar-cover">
+                    <?php if($people['admin'] == 1){?>
+                     <span id="bolts" uk-tooltip="Admin" uk-icon="bolt">
+                    <?php } else { ?>
+                    <span id="user" uk-tooltip="Membro" uk-icon="user">
+                    <?php } ?>
+                </div>
                  <div class="back">
                     <div class="seguir">
                     <?php
@@ -317,20 +264,120 @@ else{
                         <a><button class="uk-button uk-button-primary"><span uk-icon="info"></span>       Atividades</button></a>
                         <a href="/editprofile"><button class="uk-button uk-button-primary"><span uk-icon="pencil"></span>       Editar perfil</button></a>
                     <?php } else{ ?>
-                        <button class="uk-button uk-button-primary"><span uk-icon="plus"></span>       Seguir</button>
+                        <button class="uk-button uk-button-primary" id="addf">Seguir</button>
                         <button class="uk-button uk-button-primary"><span uk-icon="warning"></span>       Bloquear</button>
                     <?php } ?>
                     </div>
                 </div>
             </div>
 
+<div id="friend-resposta"></div>
 
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#addf").click(function() {
+        var people = <?php echo $people['id'];?>;
+        $.post("/static/php/seguir.php", {people: people},
+        function(data){
+         $("#friend-resposta").html(data);
+         }
+         , "html");
+         return false;
+    });
+});
+</script>
+
+
+
+<div class="uk-flex uk-flex-left">
+        <div class="status-p uk-animation-slide-top-medium" style="top: 380px; position: fixed;">
+            <a><li><img src="/img/avatar/<?php echo $people['photo'];?>" class="wtf">
+            <span>  <?php
+            $nome = $people['nome'] . " " .  $people['sobrenome'];
+  $str2 = nl2br( $nome );
+  $len2 = strlen( $str2 );
+  $max2 = 15;
+   if( $len2 <= $max2 )
+   echo $str2;
+  else    
+   echo substr( $str2, 0, $max2 ) . '...'?></span>
+            </li></a>
+            <?php
+            if($user['id'] <> $people['id']){
+            ?>
+            <li><a id="get" uk-tooltip="Vire fa de <?php echo $nome;?>">Virar fan</a></li>
+            <?php } else{?>
+            <li><a id="get" href="/editprofile" uk-tooltip="Adiciona uma foto de perfil ou de capa ou de background.">Editar perfil</a></li>
+            <?php } ?>
+            <hr>
+            <li><a href="#" id="linksn">Seguindo</a></li>
+            <li><a href="#" id="linksn">Seguidores</a></li>
+            <hr>
+            <li><a href="/profile.php?id=<?php echo $people['id'];?>&viewfotos=1" id="linksn">Desenhos</a></li>
+            <li><a href="#" id="linksn">Desenhos favoritos</a></li>
+            <hr>
+            <li><a href="#" id="linksn">Fotos de perfil</a></li>
+        </div>
+    </div>
+
+
+
+<?php
+if($_GET['viewfotos'] == 1){
+?>
+
+
+
+<div class="uk-flex uk-flex-right">
+<div class="postagem" style="top: 50px;">
+
+<h2 style="color: #fff;">Desenhos</h2>
+<div class="uk-child-width-1-3@m" uk-grid uk-lightbox="animation: scale">
+<?php
+                $peopleid = $people['id'];
+                $desenhos = DBRead( 'desenhos', "WHERE id and iduser = $peopleid ORDER BY id DESC LIMIT 20" );
+                if (!$desenhos)
+                echo '<div class="uk-alert-primary uk-animation-slide-top-medium" uk-alert style="top: 55px; width: 90%; left: 30px; position: relative;">
+                        <a class="uk-alert-close"></a>
+                        <p>Nenhuma desenho do usuario.</p>
+                        </div>';    
+                else  
+                    foreach ($desenhos as $desenho):   
+                ?>
+                <?php
+                $eu = $desenho['iduser'];
+                $eudesenheis = DBRead( 'user', "WHERE id = $eu ORDER BY id DESC LIMIT 1" );
+                if (!$eudesenheis)
+                echo '';    
+                else  
+                    foreach ($eudesenheis as $eudesenhei):   
+                ?>
+                <?php if($desenho['photo'] == ""){ echo '';}else{?>
+                      <div style="width: 100%; max-height: 800px;">
+                        <a uk-tooltip="Feito por <?php echo $eudesenhei['nome']; ?> <?php echo $eudesenhei['sobrenome']; ?> <br> <?php echo $desenho['sobre']; ?>" class="uk-inline" href="img/desenhos/<?php echo $desenho['photo'];?>" data-caption="<?php echo $eudesenhei['nome'];?> <?php echo $eudesenhei['sobrenome'];?> :  <?php echo $desenho['sobre'];?>" style="width: 100%; max-height: 800px;">
+                            <img src="img/desenhos/<?php echo $desenho['photo'];?>" style="width: 100%; max-height: 800px;" alt=""/>
+                        </a>
+                    </div>
+                <?php } ?>
+
+<?php endforeach;endforeach;?>
+</div>
+</div>
+</div>
+
+
+<?php } else{ ?>
+
+<div class="uk-flex uk-flex-right">
 <div class="postagem">
 <?php
 $peopleid = $people['id'];
-                $desenhos = DBRead( 'desenhos', "WHERE id and iduser = $peopleid ORDER BY id DESC LIMIT 7" );
+                $desenhos = DBRead( 'desenhos', "WHERE id and iduser = $peopleid ORDER BY id DESC LIMIT 20" );
                 if (!$desenhos)
-                echo '';    
+                echo '<div class="uk-alert-primary uk-animation-slide-top-medium" uk-alert style="top: 55px;">
+                        <a class="uk-alert-close"></a>
+                        <p>Nenhuma publicação do usuario.</p>
+                        </div>';    
                 else  
                     foreach ($desenhos as $desenho):   
                 ?>
@@ -413,6 +460,10 @@ else
 
 
     </div>
+    <?php } ?>
+
+</div>
+
 </div>
 
 

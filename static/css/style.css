@@ -65,7 +65,7 @@ body{
 }
 
 .header-align{
-	width: 1220px;
+	width: 1020px;
 	position: relative;	
 }
 
@@ -107,7 +107,7 @@ body{
 }
 
 .main{
-	width: 1220px;
+	width: 1000px;
 	height: auto;
 	top: 180px;
 	position: relative;
@@ -117,7 +117,7 @@ body{
 
 .status-p{
 	background-color: #fff;
-    width: 274px;
+    width: 244px;
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #d6dee5;
@@ -204,7 +204,7 @@ body{
 }
 
 .feed{
-	width: 590px;
+	width: 450px;
 	height: auto;
 	position: relative;
 	bottom: 20px;
@@ -400,7 +400,7 @@ body{
 }
 
 .profiles{
-	width: 900px;
+	width: 1220px;
 	height: auto;
 	position: relative;
 	bottom: 20px;
@@ -421,8 +421,9 @@ body{
 	background-size: cover;
 	top: 180px;
 	left: 50px;
-	border: 3px solid rgba(0,0,0,.60);
+	border: 3px solid #fff;
 	z-index: 100;
+	border-radius: 50%;
 }
 
 #bottom-post{
@@ -458,9 +459,9 @@ body{
 .back{
 	width: 100%;
 	height: 100%;
-	background: rgba(0,0,0,.20);
-	position: absolute;
-	bottom: 0;
+	background: rgba(0,0,0,.70);
+	position: relative;
+	bottom: 155px;
 	right: 0;
 }
 
@@ -523,5 +524,51 @@ body{
 
 .postagem{
 	position: relative;
-	top: 40px;
+	top: 0px;
+	width: 730px;
+	background: transparent;
 }
+
+#bolts{
+	background: #eee;
+	border-radius: 50%;
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	position: relative;
+	float: right;
+}
+
+#bolts svg{
+	width: 40px;
+	height: 40px;
+}
+
+#bolts:hover{
+	background: #555;
+	color: #fff;
+}
+
+#user{
+	background: #eee;
+	border-radius: 50%;
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	position: relative;
+	float: right;
+}
+
+#user:hover{
+	background: #555;
+	color: #fff;
+}
+
+#user svg{
+	width: 30px;
+	height: 30px;
+	position: relative;
+	left: 5px;
+	top: 5px;
+}
+s
